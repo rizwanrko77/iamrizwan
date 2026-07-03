@@ -302,8 +302,6 @@ hr {
   max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 0 var(--space-3);
-  background: transparent;
-  backdrop-filter: none;
 }
 
 .page-content {
