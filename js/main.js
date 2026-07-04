@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Rizwan's Portfolio — JavaScript
+   Rizwan's Portfolio - JavaScript
    Minimal interactivity: menu toggle, collapsible, active nav, scroll fade-in
    ========================================================================== */
 
@@ -7,7 +7,7 @@
 async function loadComponents() {
   const navEl = document.getElementById('nav-placeholder');
   const footerEl = document.getElementById('footer-placeholder');
-  
+
   if (navEl) {
     const res = await fetch('/components/nav.html');
     navEl.innerHTML = await res.text();
@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', async () => {
      2. Active Navigation Link
      ----------------------------------------------------------------------- */
   const pathname = window.location.pathname.replace(/\/$/, '') || '/';
-  
+
   document.querySelectorAll('.nav__link, .nav__mobile-link').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === pathname || 
-        (pathname === '/' && href === '/') ||
-        (pathname === '/index.html' && href === '/')) {
+    if (href === pathname ||
+      (pathname === '/' && href === '/') ||
+      (pathname === '/index.html' && href === '/')) {
       link.classList.add(
         link.classList.contains('nav__link') ? 'nav__link--active' : 'nav__mobile-link--active'
       );
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     trigger.addEventListener('click', () => {
       const collapsible = trigger.closest('.collapsible');
       collapsible.classList.toggle('is-open');
-      
+
       const isOpen = collapsible.classList.contains('is-open');
       trigger.setAttribute('aria-expanded', isOpen);
     });
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
      4. Scroll Fade-In Animation
      ----------------------------------------------------------------------- */
   const fadeElements = document.querySelectorAll('.fade-in');
-  
+
   if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

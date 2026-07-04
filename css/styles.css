@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Rizwan's Portfolio — Design System
+   Rizwan's Portfolio - Design System
    Inspired by thisiskp.com · Adapted for a builder-founder
    ========================================================================== */
 
@@ -12,17 +12,17 @@
 :root {
   /* Color Palette */
   --bg: #EFF8FF;
-  /* Light sky — page background */
+  /* Light sky - page background */
   --hero-panel: #54abce;
-  /* Sky blue — photo panel */
+  /* Sky blue - photo panel */
   --surface: #FFFFFF;
   --text-primary: #1E293B;
   --text-secondary: #4A5568;
   --text-muted: #8899AA;
   --accent: #2181B5;
-  /* Deeper sky — links & CTAs */
+  /* Deeper sky - links & CTAs */
   --accent-soft: #E1F1FA;
-  /* Soft sky — quote block bg */
+  /* Soft sky - quote block bg */
   --border: #D0E4F0;
   /* Sky-tinted border */
   --danger-soft: #FFF3F3;
@@ -118,7 +118,7 @@ hr {
 }
 
 /* ==========================================================================
-   Home Page — Split Column Layout
+   Home Page - Split Column Layout
    ========================================================================== */
 .home-layout {
   display: grid;
@@ -784,7 +784,7 @@ hr {
 }
 
 /* ==========================================================================
-   Projects Page — Full Project Cards
+   Projects Page - Full Project Cards
    ========================================================================== */
 .projects-grid {
   display: grid;
@@ -840,7 +840,7 @@ hr {
 }
 
 /* ==========================================================================
-   Writing Page — Post List
+   Writing Page - Post List
    ========================================================================== */
 .post-row {
   display: flex;
@@ -886,7 +886,7 @@ hr {
 }
 
 /* ==========================================================================
-   Learnings Page — Learning Cards
+   Learnings Page - Learning Cards
    ========================================================================== */
 .learning-card {
   border: 1px solid var(--border);
@@ -956,7 +956,7 @@ hr {
 }
 
 /* ==========================================================================
-   Bio Page — Special Components
+   Bio Page - Special Components
    ========================================================================== */
 .photo-grid {
   display: grid;
