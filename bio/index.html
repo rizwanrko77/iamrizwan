@@ -15,17 +15,28 @@
 </head>
 
 <body>
-  <div id="nav-placeholder" class="page-nav"></div>
+  <div class="home-layout">
+    <!-- ===== LEFT PANEL - Sticky Photo ===== -->
+    <aside class="photo-panel" aria-label="Portrait photo">
+      <img src="/images/placeholder-photo.png" alt="Mohd Rizwan - portrait" class="photo-panel__img fade-in" loading="eager">
+    </aside>
 
-  <div class="page-layout">
-    <main class="page-content">
+    <!-- ===== RIGHT PANEL - Scrollable Content ===== -->
+    <main class="content-panel">
+      <div id="nav-placeholder"></div>
+      <div class="content-panel__inner">
 
-      <!-- Page Header -->
-      <header class="page-header fade-in">
-        <span class="page-header__emoji">👋</span>
-        <h1 class="page-header__title">Bio</h1>
-        <p class="page-header__subtitle">Founder. Builder. The full story.</p>
-      </header>
+      <!-- Section 1: Name Label + Tagline -->
+      <section class="section--sm fade-in" style="margin-top: 0;">
+        <span class="page-header__emoji" style="margin-top: 0;">👋</span>
+        <p class="hero-name" style="margin-top: 1rem;">I am</p>
+        <h1 class="hero-tagline">
+          <span>Fathe<span class="name-highlight">r</span>,</span>
+          <span>organ<span class="name-highlight">iz</span>er,</span>
+          <span><span class="name-highlight">w</span>onderer, &<br> <span class="name-highlight">a</span> fou<span
+              class="name-highlight">n</span>der.</span>
+        </h1>
+      </section>
 
       <section class="section fade-in bio-text">
         <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Who I am</h2>
@@ -86,8 +97,9 @@
 
       <div id="footer-placeholder"></div>
 
-    </main>
-  </div>
+      </div><!-- /content-panel__inner -->
+    </main><!-- /content-panel -->
+  </div><!-- /home-layout -->
 
   <script src="/js/main.js"></script>
 </body>
