@@ -9,7 +9,8 @@ export default function Footer() {
           Connect with me ·{' '}
           <a href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·{' '}
           <a href="mailto:hello@iamrizwan.com">Email</a> ·{' '}
-          <a href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+          <a href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer">Book a meeting</a> ·{' '}
+          <Link href="/my-time">My Time</Link>
         </p>
       </footer>
     </FadeIn>

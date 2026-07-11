@@ -24,6 +24,7 @@ export default function Nav() {
           <Link href="/bio" className={`nav__link ${isActive('/bio') ? 'nav__link--active' : ''}`}>Bio</Link>
           <Link href="/resources" className={`nav__link ${isActive('/resources') ? 'nav__link--active' : ''}`}>Resources</Link>
           <Link href="/projects" className={`nav__link ${isActive('/projects') ? 'nav__link--active' : ''}`}>Projects</Link>
+          <Link href="/my-time" className={`nav__link ${isActive('/my-time') ? 'nav__link--active' : ''}`}>My Time</Link>
           <Link href="/contact" className={`nav__link ${isActive('/contact') ? 'nav__link--active' : ''}`}>Contact</Link>
         </div>
         <button 
@@ -54,6 +55,7 @@ export default function Nav() {
         <Link href="/bio" className={`nav__mobile-link ${isActive('/bio') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Bio</Link>
         <Link href="/resources" className={`nav__mobile-link ${isActive('/resources') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Resources</Link>
         <Link href="/projects" className={`nav__mobile-link ${isActive('/projects') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Projects</Link>
+        <Link href="/my-time" className={`nav__mobile-link ${isActive('/my-time') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>My Time</Link>
         <Link href="/contact" className={`nav__mobile-link ${isActive('/contact') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Contact</Link>
       </div>
     </>

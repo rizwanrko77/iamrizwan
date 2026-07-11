@@ -35,6 +35,9 @@ export default function Contact() {
           <p>
             Want to discuss? <a href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer">Book a meeting</a>
           </p>
+          <p>
+            Check my availability → <Link href="/my-time">My Time</Link>
+          </p>
         </section>
       </FadeIn>
     </PageLayout>

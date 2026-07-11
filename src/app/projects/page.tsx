@@ -33,10 +33,27 @@ export default function Projects() {
                   <span className="status-chip__dot"></span> Active
                 </span>
               </div>
-              <p className="card__body">AI as a Service infrastructure for businesses, schools & other use cases.</p>
+              <p className="card__body">Pay as you learn educational marketplace.</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="project-card__tags" style={{ marginBottom: 0 }}>ai · saas · education · infrastructure</span>
+                <span className="project-card__tags" style={{ marginBottom: 0 }}>education · marketplace</span>
                 <a href="https://xapproach.com" target="_blank" rel="noopener noreferrer" className="card__link">
+                  Open Project <span>→</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Time */}
+            <div className="card">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-1)' }}>
+                <h3 className="card__title" style={{ marginBottom: 0 }}>Time</h3>
+                <span className="status-chip status-chip--active" style={{ marginBottom: 0 }}>
+                  <span className="status-chip__dot"></span> Active
+                </span>
+              </div>
+              <p className="card__body">Allocate your hours across jobs, freelance gigs, and side projects. Track your time with a built-in timer. Share a live availability page so clients and collaborators know exactly when you're available.</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span className="project-card__tags" style={{ marginBottom: 0 }}>productivity · time-tracking · tool</span>
+                <a href="https://time.iamrizwan.com/" target="_blank" rel="noopener noreferrer" className="card__link">
                   Open Project <span>→</span>
                 </a>
               </div>
