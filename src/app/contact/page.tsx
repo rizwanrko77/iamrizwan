@@ -1,5 +1,6 @@
 import PageLayout from "@/components/PageLayout";
 import FadeIn from "@/components/FadeIn";
+import TrackedLink from "@/components/TrackedLink";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -24,16 +25,16 @@ export default function Contact() {
       <FadeIn>
         <section className="contact-content">
           <p>
-            The best way is LinkedIn → <a href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer">Click here</a>
+            The best way is LinkedIn → <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="contact_clicked" eventParams={{ method: 'LinkedIn' }}>Click here</TrackedLink>
           </p>
           <p>
-            Or email directly → <a href="mailto:hello@iamrizwan.com">Click here</a>
+            Or email directly → <TrackedLink href="mailto:hello@iamrizwan.com" eventName="contact_clicked" eventParams={{ method: 'Email' }}>Click here</TrackedLink>
           </p>
           <p>
             If you're a founder building something interesting, or a team that needs someone who can do product thinking, research, designing, or actually ship - I'm especially responsive.
           </p>
           <p>
-            Want to discuss? <a href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer">Book a meeting</a>
+            Want to discuss? <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="contact_clicked" eventParams={{ method: 'Cal.com' }}>Book a meeting</TrackedLink>
           </p>
           <p>
             Check my availability → <Link href="/my-time">My Time</Link>

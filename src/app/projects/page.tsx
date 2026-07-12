@@ -1,5 +1,6 @@
 import PageLayout from "@/components/PageLayout";
 import FadeIn from "@/components/FadeIn";
+import TrackedLink from "@/components/TrackedLink";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -36,9 +37,9 @@ export default function Projects() {
               <p className="card__body">Pay as you learn educational marketplace.</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="project-card__tags" style={{ marginBottom: 0 }}>education · marketplace</span>
-                <a href="https://xapproach.com" target="_blank" rel="noopener noreferrer" className="card__link">
+                <TrackedLink href="https://xapproach.com" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Xapproach' }}>
                   Open Project <span>→</span>
-                </a>
+                </TrackedLink>
               </div>
             </div>
 
@@ -53,9 +54,9 @@ export default function Projects() {
               <p className="card__body">Allocate your hours across jobs, freelance gigs, and side projects. Track your time with a built-in timer. Share a live availability page so clients and collaborators know exactly when you're available.</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="project-card__tags" style={{ marginBottom: 0 }}>productivity · time-tracking · tool</span>
-                <a href="https://time.iamrizwan.com/" target="_blank" rel="noopener noreferrer" className="card__link">
+                <TrackedLink href="https://time.iamrizwan.com/" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Time' }}>
                   Open Project <span>→</span>
-                </a>
+                </TrackedLink>
               </div>
             </div>
 
@@ -70,9 +71,9 @@ export default function Projects() {
               <p className="card__body">Simple resume building and updating tool.</p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="project-card__tags" style={{ marginBottom: 0 }}>tool · resume · productivity</span>
-                <a href="https://resumetool.iamrizwan.com" target="_blank" rel="noopener noreferrer" className="card__link">
+                <TrackedLink href="https://resumetool.iamrizwan.com" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Resume Tool' }}>
                   Open Project <span>→</span>
-                </a>
+                </TrackedLink>
               </div>
             </div>
 
