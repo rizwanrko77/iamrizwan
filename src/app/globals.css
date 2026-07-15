@@ -69,7 +69,6 @@
 
 html {
   font-size: 17px;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -745,16 +744,235 @@ hr {
   font-size: 0.82rem;
 }
 
+/* ==========================================================================
+   Tabs (Projects Page)
+   ========================================================================== */
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.tabs__tab {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tabs__tab:hover {
+  color: var(--text-primary);
+}
+
+.tabs__tab--active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+.tabs__content {
+  min-height: 200px;
+}
+
+/* ==========================================================================
+   Founder CTA Banner (Projects Page - For Founders tab)
+   ========================================================================== */
+.founder-cta {
+  background: linear-gradient(135deg, var(--accent-soft) 0%, #d6eef9 50%, #e8f4fd 100%);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.founder-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(33, 129, 181, 0.12);
+}
+
+.founder-cta__icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-2);
+}
+
+.founder-cta__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.founder-cta__body {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--space-3);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.founder-cta__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  padding: 10px 24px;
+  border-radius: 99px;
+  text-decoration: none;
+  transition: gap 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.founder-cta__link:hover {
+  gap: 10px;
+  background: #1a6d9a;
+  box-shadow: 0 4px 12px rgba(33, 129, 181, 0.25);
+  text-decoration: none;
+  color: #fff;
+}
+
 /* --- Footer --- */
 .footer {
   margin-top: var(--space-6);
   padding-bottom: var(--space-5);
 }
 
+.footer__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
 .footer__text {
   font-size: 0.76rem;
   color: var(--text-muted);
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   Footer Dropdown (upward-opening)
+   ========================================================================== */
+.footer-dropdown {
+  position: relative;
+}
+
+.footer-dropdown__trigger {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-dropdown__trigger:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.footer-dropdown__arrow {
+  transition: transform 0.2s ease;
+}
+
+.footer-dropdown__arrow--open {
+  transform: rotate(180deg);
+}
+
+.footer-dropdown__menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  padding: var(--space-1) 0;
+  z-index: 20;
+  animation: slideUp 0.18s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-dropdown__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px var(--space-2);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.footer-dropdown__item:hover {
+  background-color: var(--accent-soft);
+  text-decoration: none;
+}
+
+.footer-dropdown__item-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.footer-dropdown__item-category {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.footer-dropdown__divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.footer-dropdown__view-all {
+  display: block;
+  padding: 8px var(--space-2);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.footer-dropdown__view-all:hover {
+  background-color: var(--accent-soft);
+  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -1251,6 +1469,32 @@ hr {
   .post-row__date {
     width: 100%;
     padding-left: calc(36px + var(--space-2));
+  }
+
+  /* Tabs: horizontally scrollable on mobile */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+  }
+
+  .tabs__tab {
+    white-space: nowrap;
+    font-size: 0.82rem;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  /* Footer: stack vertically on mobile */
+  .footer__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  /* Footer dropdown: left-aligned on mobile */
+  .footer-dropdown__menu {
+    right: auto;
+    left: 0;
   }
 }
 
