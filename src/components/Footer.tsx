@@ -29,63 +29,86 @@ export default function Footer() {
   return (
     <FadeIn>
       <footer className="footer mt-8">
-        <div className="footer__row">
-          <p className="footer__text">
-            Connect with me ·{' '}
-            <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink> ·{' '}
-            <TrackedLink href="mailto:hello@iamrizwan.com" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Email</TrackedLink> ·{' '}
-            <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink> ·{' '}
-            <Link href="/my-time">My Time</Link>
-          </p>
-
-          {/* Projects Dropdown */}
-          <div className="footer-dropdown" ref={dropdownRef}>
-            <button
-              className="footer-dropdown__trigger"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              aria-expanded={isDropdownOpen}
-              aria-haspopup="true"
-            >
-              Projects
-              <svg
-                className={`footer-dropdown__arrow ${isDropdownOpen ? 'footer-dropdown__arrow--open' : ''}`}
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="2,7 5,3 8,7" />
-              </svg>
-            </button>
-
-            {isDropdownOpen && (
-              <div className="footer-dropdown__menu" role="menu">
-                {projectsList.map((project) => (
-                  <TrackedLink
-                    key={project.name}
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="footer-dropdown__item"
-                    role="menuitem"
-                    eventName="footer_project_clicked"
-                    eventParams={{ project: project.name }}
-                  >
-                    <span className="footer-dropdown__item-name">{project.name}</span>
-                    <span className="footer-dropdown__item-category">{project.category}</span>
-                  </TrackedLink>
-                ))}
-                <div className="footer-dropdown__divider" />
-                <Link href="/projects" className="footer-dropdown__view-all" onClick={() => setIsDropdownOpen(false)}>
-                  View All Projects →
-                </Link>
-              </div>
-            )}
+        <div className="footer__top">
+          {/* Connect Group */}
+          <div className="footer__group">
+            <span className="footer__group-label">Connect</span>
+            <div className="footer__group-links">
+              <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink>
+              <TrackedLink href="mailto:hello@iamrizwan.com" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Email</TrackedLink>
+              <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink>
+            </div>
           </div>
+
+          {/* Navigate Group */}
+          <div className="footer__group">
+            <span className="footer__group-label">Navigate</span>
+            <div className="footer__group-links">
+              <Link href="/bio">Bio</Link>
+              <Link href="/resources">Resources</Link>
+              <Link href="/my-time">My Time</Link>
+              <Link href="/contact">Contact</Link>
+            </div>
+          </div>
+
+          {/* Projects Dropdown Group */}
+          <div className="footer__group">
+            <span className="footer__group-label">Projects</span>
+            <div className="footer__group-links" ref={dropdownRef}>
+              <div className="footer-dropdown">
+                <button
+                  className="footer-dropdown__trigger"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  aria-expanded={isDropdownOpen}
+                  aria-haspopup="true"
+                >
+                  View all
+                  <svg
+                    className={`footer-dropdown__arrow ${isDropdownOpen ? 'footer-dropdown__arrow--open' : ''}`}
+                    width="10"
+                    height="10"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline points="2,7 5,3 8,7" />
+                  </svg>
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="footer-dropdown__menu" role="menu">
+                    {projectsList.map((project) => (
+                      <TrackedLink
+                        key={project.name}
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-dropdown__item"
+                        role="menuitem"
+                        eventName="footer_project_clicked"
+                        eventParams={{ project: project.name }}
+                      >
+                        <span className="footer-dropdown__item-name">{project.name}</span>
+                        <span className="footer-dropdown__item-category">{project.category}</span>
+                      </TrackedLink>
+                    ))}
+                    <div className="footer-dropdown__divider" />
+                    <Link href="/projects" className="footer-dropdown__view-all" onClick={() => setIsDropdownOpen(false)}>
+                      All Projects →
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom row: copyright */}
+        <div className="footer__bottom">
+          <span>© {new Date().getFullYear()} Mohd Rizwan</span>
         </div>
       </footer>
     </FadeIn>
