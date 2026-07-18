@@ -52,12 +52,29 @@ export default function Projects() {
             <section className="section">
               <div className="projects-list" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
 
+                {/* Tharom AI */}
+                <div className="card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-1)' }}>
+                    <h3 className="card__title" style={{ marginBottom: 0 }}>Tharom AI</h3>
+                    <span className="status-chip status-chip--active" style={{ marginBottom: 0 }}>
+                      <span className="status-chip__dot"></span> Active
+                    </span>
+                  </div>
+                  <p className="card__body">Building the next generation of AI-powered knowledge infrastructure. Where Knowledge Thinks.</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span className="project-card__tags" style={{ marginBottom: 0 }}>AI · knowledge infrastructure</span>
+                    <TrackedLink href="https://tharom.com" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Tharom AI' }}>
+                      Open Project <span>→</span>
+                    </TrackedLink>
+                  </div>
+                </div>
+
                 {/* XApproach */}
                 <div className="card">
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-1)' }}>
                     <h3 className="card__title" style={{ marginBottom: 0 }}>Xapproach</h3>
-                    <span className="status-chip status-chip--active" style={{ marginBottom: 0 }}>
-                      <span className="status-chip__dot"></span> Active
+                    <span className="status-chip status-chip--hold" style={{ marginBottom: 0 }}>
+                      <span className="status-chip__dot"></span> On Hold
                     </span>
                   </div>
                   <p className="card__body">Pay as you learn educational marketplace.</p>
@@ -132,7 +149,7 @@ export default function Projects() {
                   <p className="card__body">Simple resume building and updating tool.</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span className="project-card__tags" style={{ marginBottom: 0 }}>tool · resume · productivity</span>
-                    <TrackedLink href="https://resumetool.iamrizwan.com" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Resume Tool' }}>
+                    <TrackedLink href="https://resumetoolai.iamrizwan.com" target="_blank" rel="noopener noreferrer" className="card__link" eventName="project_clicked" eventParams={{ project: 'Resume Tool' }}>
                       Open Project <span>→</span>
                     </TrackedLink>
                   </div>

@@ -6,9 +6,10 @@ import FadeIn from './FadeIn';
 import TrackedLink from './TrackedLink';
 
 const projectsList = [
-  { name: 'Xapproach', href: 'https://xapproach.com', category: 'Startup' },
+  { name: 'Tharom AI', href: 'https://tharom.com', category: 'Startup' },
+  { name: 'Xapproach', href: 'https://xapproach.com', category: 'Startup · On Hold' },
   { name: 'Time', href: 'https://time.iamrizwan.com/', category: 'For Founders' },
-  { name: 'Simple AI Resume Tool', href: 'https://resumetool.iamrizwan.com', category: 'Just for Fun' },
+  { name: 'Simple AI Resume Tool', href: 'https://resumetoolai.iamrizwan.com', category: 'Just for Fun' },
 ];
 
 export default function Footer() {
@@ -91,8 +92,7 @@ export default function Footer() {
                         eventName="footer_project_clicked"
                         eventParams={{ project: project.name }}
                       >
-                        <span className="footer-dropdown__item-name">{project.name}</span>
-                        <span className="footer-dropdown__item-category">{project.category}</span>
+                      <span className="footer-dropdown__item-name">{project.name}</span>
                       </TrackedLink>
                     ))}
                     <div className="footer-dropdown__divider" />

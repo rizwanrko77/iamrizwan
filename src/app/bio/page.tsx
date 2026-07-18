@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Bio - Mohd Rizwan",
-  description: "Built startups alone, placed 2,500+ candidates. Built Humgrow, grew it to 32 people, shut it down myself in 2025. Now building XApproach, solo.",
+  description: "Built startups alone, placed 2,500+ candidates. Built Humgrow, grew it to 32 people, shut it down myself in 2025. Now building Tharom AI, solo.",
 };
 
 export default function Bio() {
@@ -43,7 +43,7 @@ export default function Bio() {
           <p>I kept RKOSPL alive, with <a href="https://malpaniassociates.com" target="_blank" rel="noopener noreferrer">Naman Malpani</a> helping me hold it together. My first company wasn't going to end as a complete failure.</p>
 
           <h2 className="mt-5" style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: '3rem' }}>What I'm doing now</h2>
-          <p>I'm building <a href="https://xapproach.com" target="_blank" rel="noopener noreferrer">XApproach</a> under RKOSPL - a learning platform powered by AI, controlled by experts. It's pre-user right now. I'm building it alone, on purpose - the moment I bring someone in, I owe them something, and right now I want zero expectations on anyone but me.</p>
+          <p>I'm building <a href="https://tharom.com" target="_blank" rel="noopener noreferrer">Tharom AI</a> under RKOSPL - the next generation of AI-powered knowledge infrastructure. I'm building alone, on purpose - the moment I bring someone in, I owe them something, and right now I want zero expectations on anyone but me.</p>
           <p>I'm not repeating the Humgrow mistake. One product, one thing at a time, in the right order.</p>
           <p>Everything above is the reason I can be useful to a founder today. I've built something from nothing, run it solo, made almost every mistake there is to make at scale, and shut it down myself when it was the right call. I know what a small mistake looks like before it becomes the one that ends the company - because I've lived on both sides of that line.</p>
         </section>

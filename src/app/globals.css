@@ -624,6 +624,11 @@ hr {
   color: var(--accent);
 }
 
+.status-chip--hold {
+  background-color: #FFF8E1;
+  color: #F57F17;
+}
+
 .status-chip--exit {
   background-color: #E8F5E9;
   color: #2E7D32;
@@ -642,6 +647,10 @@ hr {
 
 .status-chip--active .status-chip__dot {
   background-color: var(--accent);
+}
+
+.status-chip--hold .status-chip__dot {
+  background-color: #F57F17;
 }
 
 .status-chip--exit .status-chip__dot {
