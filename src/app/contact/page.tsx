@@ -1,22 +1,13 @@
-'use client';
-
 import PageLayout from "@/components/PageLayout";
 import FadeIn from "@/components/FadeIn";
 import TrackedLink from "@/components/TrackedLink";
 import Link from "next/link";
-import { useCallback } from "react";
+import { Metadata } from "next";
 
-/* Metadata moved to contact/layout.tsx for client component compatibility */
-
-const EMAIL_PARTS = ['hello', 'iamrizwan', 'com'] as const;
-
-function buildMailto() {
-  return `mailto:${EMAIL_PARTS[0]}@${EMAIL_PARTS[1]}.${EMAIL_PARTS[2]}`;
-}
-
-/*
- * Metadata is in contact/layout.tsx
- */
+export const metadata: Metadata = {
+  title: "Contact — Mohd Rizwan",
+  description: "Get in touch with Mohd Rizwan. The best way in is a message, not a form. LinkedIn, email, or book a meeting.",
+};
 
 export default function Contact() {
   return (
@@ -47,7 +38,9 @@ export default function Contact() {
             </div>
             <div className="contact-channel">
               <span className="contact-channel__label">Email</span>
-              <a href="#" className="contact-channel__link" onClick={(e) => { e.preventDefault(); window.location.href = buildMailto(); }}>Send an email →</a>
+              <TrackedLink href="mailto:hello@iamrizwan.com" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'Email' }}>
+                hello@iamrizwan.com
+              </TrackedLink>
             </div>
             <div className="contact-channel">
               <span className="contact-channel__label">Meeting</span>

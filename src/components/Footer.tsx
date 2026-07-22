@@ -36,7 +36,7 @@ export default function Footer() {
             <span className="footer__group-label">Connect</span>
             <div className="footer__group-links">
               <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink>
-              <a href="#" onClick={(e) => { e.preventDefault(); window.location.href = `mailto:${'hello'}@${'iamrizwan'}.com`; }}>Email</a>
+              <TrackedLink href="mailto:hello@iamrizwan.com" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Email</TrackedLink>
               <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink>
               <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'GitHub' }}>GitHub</TrackedLink>
             </div>
