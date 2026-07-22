@@ -23,7 +23,7 @@ export default function Bio() {
               loading="lazy"
             />
             <div>
-              <p className="page-header__kicker" style={{ marginBottom: '0.5rem', textTransform: 'none' }}>— I&apos;m a</p>
+              <p className="page-header__kicker" style={{ marginBottom: '0.5rem', textTransform: 'none' }}>— I&apos;m</p>
               <h1 className="bio-tagline">
                 Fathe<span className="accent-letter">r</span>,{' '}
                 cogn<span className="accent-letter">iz</span>ant,{' '}
