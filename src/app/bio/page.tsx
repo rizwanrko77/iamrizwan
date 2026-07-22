@@ -24,7 +24,7 @@ export default function Bio() {
             />
             <h1 className="bio-tagline">
               Fathe<span className="accent-letter">r</span>,{' '}
-              organ<span className="accent-letter">iz</span>er,{' '}
+              cogn<span className="accent-letter">iz</span>ant,{' '}
               <span className="accent-letter">w</span>onderer,{' '}
               &amp; <span className="accent-letter">a</span>{' '}
               fou<span className="accent-letter">n</span>der.
