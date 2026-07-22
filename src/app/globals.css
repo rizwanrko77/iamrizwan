@@ -504,7 +504,7 @@ h2 {
    Bio Page — Editorial Article
    ========================================================================== */
 .bio-article {
-  max-width: 65ch;
+  max-width: 78ch;
   margin: 0 auto;
 }
 
@@ -516,7 +516,7 @@ h2 {
 }
 
 .bio-portrait {
-  width: 150px;
+  width: 185px;
   height: auto;
   border: 1px solid var(--line);
   flex-shrink: 0;
@@ -833,7 +833,7 @@ h2 {
    Contact Page
    ========================================================================== */
 .contact-content {
-  max-width: 52ch;
+  max-width: 78ch;
 }
 
 .contact-content p {
