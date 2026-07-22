@@ -2,16 +2,59 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+    // Return focus to hamburger when closing
+    hamburgerRef.current?.focus();
+  }, []);
 
+  const toggleMenu = () => setIsOpen(prev => !prev);
   const isActive = (path: string) => pathname === path;
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeMenu();
+        return;
+      }
+
+      // Focus trap: keep Tab within the mobile menu
+      if (e.key === 'Tab' && menuRef.current) {
+        const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, closeMenu]);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -22,14 +65,13 @@ export default function Nav() {
         </Link>
         <div className="nav__links">
           <Link href="/bio" className={`nav__link ${isActive('/bio') ? 'nav__link--active' : ''}`}>Bio</Link>
-          <Link href="/resources" className={`nav__link ${isActive('/resources') ? 'nav__link--active' : ''}`}>Resources</Link>
           <Link href="/projects" className={`nav__link ${isActive('/projects') ? 'nav__link--active' : ''}`}>Projects</Link>
-          <Link href="/my-time" className={`nav__link ${isActive('/my-time') ? 'nav__link--active' : ''}`}>My Time</Link>
           <Link href="/contact" className={`nav__link ${isActive('/contact') ? 'nav__link--active' : ''}`}>Contact</Link>
         </div>
-        <button 
-          className="nav__hamburger" 
-          aria-label="Toggle menu" 
+        <button
+          ref={hamburgerRef}
+          className="nav__hamburger"
+          aria-label="Toggle menu"
           aria-expanded={isOpen}
           onClick={toggleMenu}
         >
@@ -50,12 +92,24 @@ export default function Nav() {
         </button>
       </nav>
 
+      {/* Mobile overlay (closes menu on tap outside) */}
+      {isOpen && (
+        <div
+          className="nav__mobile-overlay is-open"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Menu */}
-      <div className={`nav__mobile-menu ${isOpen ? 'is-open' : ''}`} role="navigation" aria-label="Mobile navigation">
+      <div
+        ref={menuRef}
+        className={`nav__mobile-menu ${isOpen ? 'is-open' : ''}`}
+        role="navigation"
+        aria-label="Mobile navigation"
+      >
         <Link href="/bio" className={`nav__mobile-link ${isActive('/bio') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Bio</Link>
-        <Link href="/resources" className={`nav__mobile-link ${isActive('/resources') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Resources</Link>
         <Link href="/projects" className={`nav__mobile-link ${isActive('/projects') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Projects</Link>
-        <Link href="/my-time" className={`nav__mobile-link ${isActive('/my-time') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>My Time</Link>
         <Link href="/contact" className={`nav__mobile-link ${isActive('/contact') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Contact</Link>
       </div>
     </>

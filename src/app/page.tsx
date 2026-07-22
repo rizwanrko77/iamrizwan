@@ -1,38 +1,83 @@
-import PageLayout from "@/components/PageLayout";
-import FadeIn from "@/components/FadeIn";
-import Link from "next/link";
-import { Metadata } from "next";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Mohd Rizwan",
-  description: "Are you running a company alone or with a small team? I help with product, building, validation, and GTM - one thing at a time.",
-};
+import { useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+
+/* 
+ * Home page hero — signature entrance animation.
+ * Words rise in sequence, hairline draws, body + links fade up.
+ * Uses 'use client' for the entrance animation IntersectionObserver.
+ * Metadata is exported from a separate layout or set in layout.tsx.
+ */
 
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    // Trigger the entrance animation
+    const timeout = setTimeout(() => {
+      el.classList.add('is-visible');
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Split the headline into words for staggered animation
+  const headlineWords = [
+    'I', 'like', 'being', 'near', 'people',
+    'building', 'something', 'real', '—',
+    'and', 'helping', 'wherever', 'the',
+    'day', 'needs', 'it.'
+  ];
+
   return (
-    <PageLayout>
-      <FadeIn>
-        <section className="section bio-text mt-3">
-          <p>
-            Are you running a company alone or with a small team?
+    <>
+      <div className="page-nav">
+        <Nav />
+      </div>
+      <main>
+        <div className="hero" ref={heroRef}>
+          <p className="hero__eyebrow">Mohd Rizwan — Bijnor, India</p>
+
+          <h1 className="hero__headline">
+            {headlineWords.map((word, i) => (
+              <span key={i} className="hero__headline-word">
+                {word}{' '}
+              </span>
+            ))}
+          </h1>
+
+          <div className="hero__rule" />
+
+          <p className="hero__body">
+            If you&apos;re running a company alone or with a small team, most of your day
+            gets eaten by everything that isn&apos;t the actual work. I help with product,
+            building, validation, and go-to-market — one thing at a time. I don&apos;t do
+            it for what you&apos;d pay; I do it to be close to something real.
           </p>
-          <p>
-            Most of your day gets eaten by things that aren't the actual work, and the product decisions that matter get
-            made in the gaps, in a rush, between everything else.
-          </p>
-          <p>
-            I can help with product design, building, validation, and GTM, or whatever else the startup needs that day.
-            In return, I get to be near someone building something real, which is worth more to me than what you'd pay
-            for it.
-          </p>
-          <p>If that's useful to you:</p>
-          <p>
-            <strong>Reach Out:</strong> <Link href="/contact">get in touch →</Link><br />
-            <strong>About Me:</strong> <Link href="/bio">see my bio →</Link><br />
-            <strong>My Work:</strong> <Link href="/projects">see projects I have built →</Link>
-          </p>
-        </section>
-      </FadeIn>
-    </PageLayout>
+
+          <div className="hero__links">
+            <Link href="/bio" className="hero__link">
+              Read my story <span>→</span>
+            </Link>
+            <Link href="/projects" className="hero__link">
+              See what I&apos;ve built <span>→</span>
+            </Link>
+            <Link href="/contact" className="hero__link">
+              Start a conversation <span>→</span>
+            </Link>
+          </div>
+        </div>
+
+        <div style={{ maxWidth: 'var(--page-max-width)', margin: '0 auto', padding: '0 var(--space-3)' }}>
+          <Footer />
+        </div>
+      </main>
+    </>
   );
 }

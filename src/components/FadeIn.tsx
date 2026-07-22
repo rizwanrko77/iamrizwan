@@ -28,10 +28,10 @@ export default function FadeIn({ children, className = '' }: { children: React.R
 
     observer.observe(el);
 
-    // Safety fallback: reveal everything after 500ms just in case
+    // Safety fallback: reveal everything after 300ms just in case
     const timeout = setTimeout(() => {
       if (el) el.classList.add('is-visible');
-    }, 500);
+    }, 300);
 
     return () => {
       observer.disconnect();

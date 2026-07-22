@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/bio',
     '/projects',
-    '/resources',
     '/contact',
     '/my-time'
   ];

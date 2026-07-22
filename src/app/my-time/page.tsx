@@ -3,22 +3,34 @@ import FadeIn from "@/components/FadeIn";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Time - Mohd Rizwan",
-  description: "Check my availability and book a meeting.",
+  title: "My Time — Mohd Rizwan",
+  description: "My current schedule, live. Grab my hours that works for a your business needs.",
 };
 
 export default function MyTime() {
   return (
     <PageLayout>
+      {/* Page Header */}
       <FadeIn>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-          <iframe 
+        <header className="page-header">
+          <p className="page-header__kicker">— Schedule</p>
+          <h1 className="page-header__title">My availability</h1>
+          <p className="page-header__subtitle">Grab my hours that works for a your business needs.</p>
+        </header>
+      </FadeIn>
+
+      {/* Iframe Container */}
+      <FadeIn>
+        <div className="my-time-container">
+          <iframe
             src="https://time.iamrizwan.com/rizwan?view=week"
-            style={{ width: '100%', maxWidth: '1024px', height: '800px', border: 0 }}
-            loading="lazy" 
-            title="My availability"
+            loading="lazy"
+            title="Rizwan's weekly availability schedule"
           ></iframe>
         </div>
+        <p className="my-time-fallback">
+          If the availability calendar doesn&apos;t load, <a href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer">book directly →</a>
+        </p>
       </FadeIn>
     </PageLayout>
   );

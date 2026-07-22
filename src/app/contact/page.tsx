@@ -1,13 +1,22 @@
+'use client';
+
 import PageLayout from "@/components/PageLayout";
 import FadeIn from "@/components/FadeIn";
 import TrackedLink from "@/components/TrackedLink";
-import { Metadata } from "next";
 import Link from "next/link";
+import { useCallback } from "react";
 
-export const metadata: Metadata = {
-  title: "Contact - Mohd Rizwan",
-  description: "Get in touch with Mohd Rizwan. Best way is LinkedIn or email. If you're a founder building something interesting, I'm especially responsive.",
-};
+/* Metadata moved to contact/layout.tsx for client component compatibility */
+
+const EMAIL_PARTS = ['hello', 'iamrizwan', 'com'] as const;
+
+function buildMailto() {
+  return `mailto:${EMAIL_PARTS[0]}@${EMAIL_PARTS[1]}.${EMAIL_PARTS[2]}`;
+}
+
+/*
+ * Metadata is in contact/layout.tsx
+ */
 
 export default function Contact() {
   return (
@@ -15,9 +24,9 @@ export default function Contact() {
       {/* Page Header */}
       <FadeIn>
         <header className="page-header">
-          <span className="page-header__emoji">🤙</span>
-          <h1 className="page-header__title">Contact</h1>
-          <p className="page-header__subtitle">Here's how to reach me.</p>
+          <p className="page-header__kicker">— Contact</p>
+          <h1 className="page-header__title">Let&apos;s talk.</h1>
+          <p className="page-header__subtitle">The best way in is a message, not a form.</p>
         </header>
       </FadeIn>
 
@@ -25,21 +34,52 @@ export default function Contact() {
       <FadeIn>
         <section className="contact-content">
           <p>
-            The best way is LinkedIn → <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="contact_clicked" eventParams={{ method: 'LinkedIn' }}>Click here</TrackedLink>
+            If you&apos;re a founder building something interesting, or a team that needs someone who can do product thinking, research, design, or ship — I&apos;m especially responsive.
           </p>
+
+          {/* Channels — quiet list with mono labels */}
+          <div className="contact-channels">
+            <div className="contact-channel">
+              <span className="contact-channel__label">LinkedIn</span>
+              <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'LinkedIn' }}>
+                Connect on LinkedIn →
+              </TrackedLink>
+            </div>
+            <div className="contact-channel">
+              <span className="contact-channel__label">Email</span>
+              <a href="#" className="contact-channel__link" onClick={(e) => { e.preventDefault(); window.location.href = buildMailto(); }}>Send an email →</a>
+            </div>
+            <div className="contact-channel">
+              <span className="contact-channel__label">Meeting</span>
+              <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'Cal.com' }}>
+                Book a meeting →
+              </TrackedLink>
+            </div>
+            <div className="contact-channel">
+              <span className="contact-channel__label">GitHub</span>
+              <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'GitHub' }}>
+                github.com/rizwanrko77
+              </TrackedLink>
+            </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* Availability Section */}
+      <FadeIn>
+        <section className="contact-content availability-section">
+          <h2>When I&apos;m around</h2>
           <p>
-            Or email directly → <TrackedLink href="mailto:hello@iamrizwan.com" eventName="contact_clicked" eventParams={{ method: 'Email' }}>Click here</TrackedLink>
-          </p>
-          <p>
-            If you're a founder building something interesting, or a team that needs someone who can do product thinking, research, designing, or actually ship - I'm especially responsive.
-          </p>
-          <p>
-            Want to discuss? <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="contact_clicked" eventParams={{ method: 'Cal.com' }}>Book a meeting</TrackedLink>
-          </p>
-          <p>
-            Check my availability → <Link href="/my-time">My Time</Link>
+            My current schedule, live. <Link href="/my-time">See full availability →</Link>
           </p>
         </section>
+      </FadeIn>
+
+      {/* Closing Note */}
+      <FadeIn>
+        <p className="contact-content contact-closing">
+          I read everything myself. If you&apos;re building, I&apos;ll write back.
+        </p>
       </FadeIn>
     </PageLayout>
   );

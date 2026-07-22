@@ -29,15 +29,16 @@ export default function Footer() {
 
   return (
     <FadeIn>
-      <footer className="footer mt-8">
+      <footer className="footer">
         <div className="footer__top">
           {/* Connect Group */}
           <div className="footer__group">
             <span className="footer__group-label">Connect</span>
             <div className="footer__group-links">
               <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink>
-              <TrackedLink href="mailto:hello@iamrizwan.com" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Email</TrackedLink>
+              <a href="#" onClick={(e) => { e.preventDefault(); window.location.href = `mailto:${'hello'}@${'iamrizwan'}.com`; }}>Email</a>
               <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink>
+              <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'GitHub' }}>GitHub</TrackedLink>
             </div>
           </div>
 
@@ -46,9 +47,9 @@ export default function Footer() {
             <span className="footer__group-label">Navigate</span>
             <div className="footer__group-links">
               <Link href="/bio">Bio</Link>
-              <Link href="/resources">Resources</Link>
-              <Link href="/my-time">My Time</Link>
+              <Link href="/projects">Projects</Link>
               <Link href="/contact">Contact</Link>
+              <Link href="/my-time">My Time</Link>
             </div>
           </div>
 
