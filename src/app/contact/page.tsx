@@ -141,6 +141,9 @@ export default function Contact() {
               <p>
                 <strong>Message sent.</strong> Thank you — I&apos;ll get back to you soon.
               </p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--ink-soft)', marginTop: '-8px', marginBottom: 'var(--space-3)' }}>
+                I just sent an automated confirmation to your email. If you don&apos;t see it, <strong>please check your spam folder</strong> and mark it as "Not spam" to ensure my reply reaches your inbox.
+              </p>
               <button
                 type="button"
                 className="contact-form__btn contact-form__btn--outline"
