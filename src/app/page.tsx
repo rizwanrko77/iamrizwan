@@ -56,9 +56,10 @@ export default function Home() {
 
           <p className="hero__body">
             If you&apos;re running a company alone or with a small team, most of your day
-            gets eaten by everything that isn&apos;t the actual work. I help with product,
-            building, validation, and go-to-market — one thing at a time. I don&apos;t do
-            it for what you&apos;d pay; I do it to be close to something real.
+            gets eaten by everything that isn&apos;t the actual work. I help with product
+            and go-to-market — spotting where a flow or feature is broken, catching what&apos;s
+            missing before a user has to point it out, building it out, one thing at a time.
+            I don&apos;t do it for what you&apos;d pay; I do it to be close to something real.
           </p>
 
           <div className="hero__links">
