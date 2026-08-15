@@ -1161,6 +1161,40 @@ h2 {
   font-size: 0.7rem;
   color: var(--ink-muted);
   letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Footer Feedback Dropdown */
+.footer-feedback {
+  position: relative;
+}
+
+.footer-feedback__trigger {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.04em;
+  transition: color var(--duration-hover) ease;
+}
+
+.footer-feedback__trigger:hover {
+  color: var(--accent);
+}
+
+.footer-feedback__menu {
+  bottom: 100%;
+  right: 0;
+  left: auto;
+  margin-bottom: 8px;
 }
 
 /* Footer Dropdown (upward-opening) */
@@ -1386,6 +1420,100 @@ noscript + .fade-in,
 .no-js .fade-in {
   opacity: 1;
   transform: none;
+}
+
+/* ==========================================================================
+   Services Page
+   ========================================================================== */
+.services-category {
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.services-category__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--line);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-3);
+}
+
+.service-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  background-color: var(--paper-raised);
+  transition: transform var(--duration-card) ease, border-color var(--duration-card) ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-muted);
+}
+
+.service-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: var(--space-1);
+}
+
+.service-card__body {
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+/* How This Works */
+.services-how-it-works {
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+  max-width: 65ch;
+}
+
+.services-how-it-works p {
+  font-size: 1.15rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+
+/* CTA Channels */
+.services-cta {
+  margin-bottom: var(--space-4);
+}
+
+.services-cta__channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.services-cta__link {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-hover) ease, color var(--duration-hover) ease, gap var(--duration-hover) ease;
+  text-decoration: none;
+}
+
+.services-cta__link:hover {
+  background-color: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  gap: 8px;
 }
 
 /* ==========================================================================
