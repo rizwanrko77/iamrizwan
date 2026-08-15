@@ -5,9 +5,9 @@ import { useState, useRef, useEffect } from 'react';
 import FadeIn from './FadeIn';
 import TrackedLink from './TrackedLink';
 
-const projectsList = [
-  { name: 'Tharom AI', href: 'https://tharom.com', category: 'Startup' },
-  { name: 'Xapproach', href: 'https://xapproach.com', category: 'Startup · On Hold' },
+const brandsList = [
+  { name: 'Tharom AI', href: 'https://tharom.com' },
+  { name: 'Xapproach', href: 'https://xapproach.com' },
 ];
 
 export default function Footer() {
@@ -45,14 +45,14 @@ export default function Footer() {
             <span className="footer__group-label">Navigate</span>
             <div className="footer__group-links">
               <Link href="/bio">Bio</Link>
-              <Link href="/projects">Projects</Link>
+              <Link href="/company">Company</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </div>
 
-          {/* Projects Dropdown Group */}
+          {/* Company Dropdown Group */}
           <div className="footer__group">
-            <span className="footer__group-label">Projects</span>
+            <span className="footer__group-label">Company</span>
             <div className="footer__group-links" ref={dropdownRef}>
               <div className="footer-dropdown">
                 <button
@@ -61,7 +61,7 @@ export default function Footer() {
                   aria-expanded={isDropdownOpen}
                   aria-haspopup="true"
                 >
-                  View all
+                  View brands
                   <svg
                     className={`footer-dropdown__arrow ${isDropdownOpen ? 'footer-dropdown__arrow--open' : ''}`}
                     width="10"
@@ -79,23 +79,28 @@ export default function Footer() {
 
                 {isDropdownOpen && (
                   <div className="footer-dropdown__menu" role="menu">
-                    {projectsList.map((project) => (
+                    <span className="footer-dropdown__title">RKO Services Private</span>
+                    {brandsList.map((brand) => (
                       <TrackedLink
-                        key={project.name}
-                        href={project.href}
+                        key={brand.name}
+                        href={brand.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer-dropdown__item"
                         role="menuitem"
                         eventName="footer_project_clicked"
-                        eventParams={{ project: project.name }}
+                        eventParams={{ project: brand.name }}
                       >
-                      <span className="footer-dropdown__item-name">{project.name}</span>
+                        <span className="footer-dropdown__item-name">{brand.name}</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '6px', opacity: 0.5 }}>
+                          <path d="M4.5 1.5H10.5V7.5" />
+                          <path d="M10.5 1.5L1.5 10.5" />
+                        </svg>
                       </TrackedLink>
                     ))}
                     <div className="footer-dropdown__divider" />
-                    <Link href="/projects" className="footer-dropdown__view-all" onClick={() => setIsDropdownOpen(false)}>
-                      All Projects →
+                    <Link href="/company" className="footer-dropdown__view-all" onClick={() => setIsDropdownOpen(false)}>
+                      View all →
                     </Link>
                   </div>
                 )}

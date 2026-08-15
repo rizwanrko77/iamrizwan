@@ -65,7 +65,7 @@ export default function Nav() {
         </Link>
         <div className="nav__links">
           <Link href="/bio" className={`nav__link ${isActive('/bio') ? 'nav__link--active' : ''}`}>Bio</Link>
-          <Link href="/projects" className={`nav__link ${isActive('/projects') ? 'nav__link--active' : ''}`}>Projects</Link>
+          <Link href="/company" className={`nav__link ${isActive('/company') ? 'nav__link--active' : ''}`}>Company</Link>
           <Link href="/contact" className={`nav__link ${isActive('/contact') ? 'nav__link--active' : ''}`}>Contact</Link>
         </div>
         <button
@@ -109,7 +109,7 @@ export default function Nav() {
         aria-label="Mobile navigation"
       >
         <Link href="/bio" className={`nav__mobile-link ${isActive('/bio') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Bio</Link>
-        <Link href="/projects" className={`nav__mobile-link ${isActive('/projects') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Projects</Link>
+        <Link href="/company" className={`nav__mobile-link ${isActive('/company') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Company</Link>
         <Link href="/contact" className={`nav__mobile-link ${isActive('/contact') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Contact</Link>
       </div>
     </>

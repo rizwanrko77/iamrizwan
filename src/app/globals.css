@@ -804,6 +804,15 @@ h2 {
   background-color: var(--gilt);
 }
 
+.status-chip--closed {
+  background-color: #EDE9E5;
+  color: var(--ink-soft);
+}
+
+.status-chip--closed .status-chip__dot {
+  background-color: var(--ink-soft);
+}
+
 /* Quiet invitation (replaces founder-cta) */
 .quiet-invite {
   border-top: 1px solid var(--line);
@@ -1092,36 +1101,6 @@ h2 {
 }
 
 /* ==========================================================================
-   My Time Page
-   ========================================================================== */
-.my-time-container {
-  max-width: 1024px;
-  margin: 0 auto;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background-color: var(--paper-raised);
-  overflow: hidden;
-}
-
-.my-time-container iframe {
-  display: block;
-  width: 100%;
-  min-height: 700px;
-  border: 0;
-}
-
-.my-time-fallback {
-  text-align: center;
-  padding: var(--space-3);
-  font-size: 0.94rem;
-  color: var(--ink-soft);
-}
-
-.my-time-fallback a {
-  color: var(--accent);
-}
-
-/* ==========================================================================
    Footer
    ========================================================================== */
 .footer {
@@ -1241,6 +1220,17 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.footer-dropdown__title {
+  display: block;
+  padding: 8px var(--space-2) 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .footer-dropdown__item {

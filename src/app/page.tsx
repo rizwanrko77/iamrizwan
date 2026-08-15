@@ -66,7 +66,7 @@ export default function Home() {
             <Link href="/bio" className="hero__link">
               Read my story <span>→</span>
             </Link>
-            <Link href="/projects" className="hero__link">
+            <Link href="/company" className="hero__link">
               See what I&apos;ve built <span>→</span>
             </Link>
             <Link href="/contact" className="hero__link">

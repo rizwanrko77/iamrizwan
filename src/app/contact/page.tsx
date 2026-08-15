@@ -10,7 +10,7 @@ import Link from "next/link";
  * Contact page — channels + "Send a message" form.
  * Form submits to a Google Apps Script Web App that:
  *   1. Appends data to a Google Sheet
- *   2. Sends a confirmation email to the submitter (CC rizwanrko77@gmail.com)
+ *   2. Sends a confirmation email to the submitter (CC hello@iamrizwan.com)
  *
  * Metadata is set via export const metadata in a separate layout
  * or handled by the parent layout since this is now 'use client'.
