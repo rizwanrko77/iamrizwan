@@ -101,7 +101,7 @@ export default function Contact() {
       <FadeIn>
         <section className="contact-content">
           <p>
-            If you&apos;re a founder building something interesting, or a team that needs someone who can do product thinking, research, design, or ship — I&apos;m especially responsive.
+            If you&apos;re working on something ambitious and think we could collaborate or share insights — my inbox is open.
           </p>
 
           {/* Channels — quiet list with mono labels */}
@@ -110,6 +110,12 @@ export default function Contact() {
               <span className="contact-channel__label">LinkedIn</span>
               <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'LinkedIn' }}>
                 Connect on LinkedIn →
+              </TrackedLink>
+            </div>
+            <div className="contact-channel">
+              <span className="contact-channel__label">Email</span>
+              <TrackedLink href="mailto:hello@iamrizwan.com?subject=Reaching%20out%20via%20iamrizwan.com&body=Hi%20Rizwan%2C%0A%0A" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'Email' }}>
+                Write an email →
               </TrackedLink>
             </div>
             <div className="contact-channel">

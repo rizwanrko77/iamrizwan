@@ -34,7 +34,7 @@ export default function Footer() {
             <span className="footer__group-label">Connect</span>
             <div className="footer__group-links">
               <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink>
-              <Link href="/contact">Send a message</Link>
+              <TrackedLink href="mailto:hello@iamrizwan.com?subject=Reaching%20out%20via%20iamrizwan.com&body=Hi%20Rizwan%2C%0A%0A" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Send an email</TrackedLink>
               <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink>
               <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'GitHub' }}>GitHub</TrackedLink>
             </div>
