@@ -30,9 +30,7 @@ export default function Home() {
   // Split the headline into words for staggered animation
   const headlineWords = [
     'I', 'like', 'being', 'near', 'people',
-    'building', 'something', 'real', '—',
-    'and', 'helping', 'wherever', 'the',
-    'day', 'needs', 'it.'
+    'building', 'something', 'real.'
   ];
 
   return (
@@ -42,11 +40,15 @@ export default function Home() {
       </div>
       <main>
         <div className="hero" ref={heroRef}>
-          <p className="hero__eyebrow">Mohd Rizwan — Dehradun, India</p>
+          <p className="hero__eyebrow">Rizwan - Dehradun, India</p>
 
           <h1 className="hero__headline">
             {headlineWords.map((word, i) => (
-              <span key={i} className="hero__headline-word">
+              <span
+                key={i}
+                className="hero__headline-word"
+                style={{ transitionDelay: `${i * 50}ms` }}
+              >
                 {word}{' '}
               </span>
             ))}
@@ -59,7 +61,7 @@ export default function Home() {
             gets eaten by everything that isn&apos;t the actual work. I help with product
             and go-to-market — spotting where a flow or feature is broken, catching what&apos;s
             missing before a user has to point it out, building it out, one thing at a time.
-            I don&apos;t do it for what you&apos;d pay; I do it to be close to something real.
+            I care about deep focus, speed of execution, and solving problems that are actually worth solving.
           </p>
 
           <div className="hero__links">

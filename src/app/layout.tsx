@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     canonical: './',
   },
   title: "Mohd Rizwan — Product Builder & GTM",
-  description: "I like being near people building something real — and helping wherever the day needs it. Product, building, validation, and go-to-market — one thing at a time.",
+  description: "I like being near people building something real. Product, building, validation, and go-to-market — one thing at a time.",
   keywords: ["Mohd Rizwan", "Product Builder", "GTM", "Startups", "Founder", "Tharom AI"],
   authors: [{ name: "Mohd Rizwan", url: siteUrl }],
   creator: "Mohd Rizwan",
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Mohd Rizwan",
     title: "Mohd Rizwan — Product Builder & GTM",
-    description: "I like being near people building something real — and helping wherever the day needs it.",
+    description: "I like being near people building something real.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Mohd Rizwan — Product Builder & GTM" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mohd Rizwan — Product Builder & GTM",
-    description: "I like being near people building something real — and helping wherever the day needs it.",
+    description: "I like being near people building something real.",
     images: ["/og-image.png"],
   },
   verification: {
@@ -67,13 +67,30 @@ export default function RootLayout({
     "name": "Mohd Rizwan",
     "url": siteUrl,
     "image": `${siteUrl}/images/Rizwan-image.png`,
-    "jobTitle": "Product Builder & GTM",
-    "description": "I help with product design, building, validation, and GTM for startups and small teams.",
+    "jobTitle": "Product Builder & Founder",
+    "description": "Founder of RKO Services Private Limited, building Tharom AI. Product thinking, AI infrastructure, and go-to-market.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "RKO Services Private Limited",
+      "url": "https://rkospl.com"
+    },
+    "founder": {
+      "@type": "Organization",
+      "name": "Tharom AI",
+      "url": "https://tharom.com"
+    },
     "sameAs": [
       "https://linkedin.com/in/rizwan-rko",
       "https://github.com/rizwanrko77"
     ],
-    "knowsAbout": ["product", "go-to-market", "startups", "recruitment", "AI"]
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "AI Infrastructure",
+      "Knowledge Systems",
+      "Product Strategy",
+      "Go-to-Market",
+      "Startups"
+    ]
   };
 
   return (

@@ -361,7 +361,7 @@ Commit per step with clear messages. Keep static export building green after eve
 
 Use/adapt these so tone stays consistent. Keep his warm, plain, slightly unusual register — never corporate.
 
-- **Home headline:** "I like being near people building something real — and helping wherever the day needs it."
+- **Home headline:** "I like being near people building something real - and helping wherever the day needs it."
 - **Home paragraph:** "If you're running a company alone or with a small team, most of your day gets eaten by everything that isn't the actual work. I help with product, building, validation, and go-to-market — one thing at a time. I don't do it for what you'd pay; I do it to be close to something real."
 - **Home links:** "Read my story →" · "See what I've built →" · "Start a conversation →"
 - **Projects subtitle:** "I'm obsessed with turning ideas into things that exist."

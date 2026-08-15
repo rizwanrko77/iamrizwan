@@ -451,7 +451,8 @@ h2 {
   transition: width 800ms var(--ease-reveal) 400ms;
 }
 
-.hero__rule.is-visible {
+.hero__rule.is-visible,
+.hero.is-visible .hero__rule {
   width: min(100%, 560px);
 }
 
@@ -472,7 +473,7 @@ h2 {
 .hero__link {
   font-family: var(--font-body);
   font-size: 1.05rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   display: inline-flex;
@@ -1336,6 +1337,7 @@ h2 {
   .hero__headline-word:nth-child(13) { transition-delay: 840ms; }
   .hero__headline-word:nth-child(14) { transition-delay: 910ms; }
   .hero__headline-word:nth-child(15) { transition-delay: 980ms; }
+  .hero__headline-word:nth-child(16) { transition-delay: 1050ms; }
 
   /* Hero body + links fade up after headline settles */
   .hero__body,

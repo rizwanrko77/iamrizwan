@@ -99,8 +99,8 @@ export default function Bio() {
         <FadeIn>
           <section className="bio-section">
             <h2>Tharom</h2>
-            <p>Now i'm building <a href="https://tharom.com" target="_blank" rel="noopener noreferrer">Tharom</a> is AI infrastructure for organisations with real expertise — starting with education. It empowers educational institutions and businesses to build their own knowledge base, own their AI model, and monetise their expertise and empower their users with their own AI agent to consume their knowledge base.</p>
-            <p>Tharom is now live for early access <a href="https://tharom.com" target="_blank" rel="noopener noreferrer">Register Here</a></p>
+            <p>I&apos;m building <a href="https://tharom.com" target="_blank" rel="noopener noreferrer">Tharom</a> — AI infrastructure for organisations with real expertise, starting with education. It empowers educational institutions and businesses to build their own knowledge base, own their AI model, monetise their expertise, and empower their users with their own AI agent to consume their knowledge base.</p>
+            <p>Tharom is now live for early access — <a href="https://tharom.com" target="_blank" rel="noopener noreferrer">register here →</a></p>
           </section>
         </FadeIn>
 
