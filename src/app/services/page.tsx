@@ -47,9 +47,8 @@ export default function Services() {
             My time-as-a-service for founders.
           </h1>
           <p className="page-header__subtitle">
-            Tell me what you&apos;re building and where you&apos;re stuck. Two or
-            three sentences is enough - I read everything myself, and I&apos;ll
-            write back.
+            Tell me what you&apos;re building and where you need help. A couple
+            of sentences is plenty - I read everything myself and write back.
           </p>
 
           <div className="services-cta-group">
@@ -57,9 +56,9 @@ export default function Services() {
               href="/contact"
               className="services-cta__link services-cta__link--primary"
               eventName="services_cta_clicked"
-              eventParams={{ location: "hero", action: "send_two_sentences" }}
+              eventParams={{ location: "hero", action: "send_message" }}
             >
-              Send two sentences <span>→</span>
+              Send a message <span>→</span>
             </TrackedLink>
             <TrackedLink
               href="https://cal.com/meet-rizwan"
