@@ -6,7 +6,27 @@ import TrackedLink from "@/components/TrackedLink";
 export const metadata: Metadata = {
   title: "Services - Mohd Rizwan",
   description:
-    "My time as a service for founders. Tell me what you're building and where you're stuck. Idea vetting, MVP building, product review, and startup consultation.",
+    "My time-as-a-service for founders. Idea vetting, MVP building, AI integrations, infused feedback loops, and product flow reviews.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://iamrizwan.com/services",
+    siteName: "Mohd Rizwan",
+    title: "Services - Mohd Rizwan",
+    description:
+      "My time-as-a-service for founders. Idea vetting, MVP building, AI integrations, infused feedback loops, and product flow reviews.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Mohd Rizwan - Services for Founders" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services - Mohd Rizwan",
+    description:
+      "My time-as-a-service for founders. Idea vetting, MVP building, AI integrations, infused feedback loops, and product flow reviews.",
+    images: ["/og-image.png"],
+  },
 };
 
 /*
