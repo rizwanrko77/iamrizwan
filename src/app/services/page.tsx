@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 
 const stuckPoints = [
   {
-    quote: '"I have an idea. Or half of one."',
+    quote: '"You have an idea. Or half of one."',
     description:
       "We give it a quick or deep breakdown - who it's for, what exists, and whether to pursue it. If you're short on time, I can do the heavy lifting myself and tell you what I think. Sometimes the answer is build it. Sometimes it's don't.",
     tags: "Idea vetting · first-time founder consultation · positioning",
   },
   {
-    quote: '"I\'ve been describing/thinking it for months. MVP still doesn\'t exist."',
+    quote: '"You\'ve been describing/thinking it for months. MVP still doesn\'t exist."',
     description:
       "We scope the smallest version worth building, then I build it - a product, a website, AI integrations, or automated workflows - to save you time and put the right version in front of real users to test actual demand.",
     tags: "MVP & prototypes · websites · AI integrations & automation",
@@ -31,7 +31,7 @@ const stuckPoints = [
   {
     quote: '"It\'s live. But the product flow feels off."',
     description:
-      "I use it the way a stranger would - finding flaws in your flows, proposing features that should be there, and cutting what shouldn't. I also build infused feedback loops into your product so you collect actionable, real-time user feedback tailored to your app's requirements.",
+      "I use it the way a real user would - finding flaws in your flows, proposing features that should be there, and cutting what shouldn't. I also build infused feedback loops into your product so you collect actionable, real-time user feedback tailored to your app's requirements.",
     tags: "Product & UX review · feature enhancements · infused feedback loops",
   },
 ];
