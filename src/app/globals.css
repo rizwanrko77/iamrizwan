@@ -1425,74 +1425,20 @@ noscript + .fade-in,
 /* ==========================================================================
    Services Page
    ========================================================================== */
-.services-category {
-  margin-bottom: clamp(3rem, 8vh, 5rem);
-}
-
-.services-category__title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-1);
-  border-bottom: 1px solid var(--line);
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-3);
-}
-
-.service-card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-  background-color: var(--paper-raised);
-  transition: transform var(--duration-card) ease, border-color var(--duration-card) ease;
-}
-
-.service-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--ink-muted);
-}
-
-.service-card__title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: var(--space-1);
-}
-
-.service-card__body {
-  font-size: 0.94rem;
-  color: var(--ink-soft);
-  line-height: 1.65;
-}
-
-/* How This Works */
-.services-how-it-works {
-  margin-bottom: clamp(3rem, 8vh, 5rem);
-  max-width: 65ch;
-}
-
-.services-how-it-works p {
-  font-size: 1.15rem;
-  line-height: 1.72;
-  color: var(--ink);
-}
-
-/* CTA Channels */
-.services-cta {
+.services-header {
   margin-bottom: var(--space-4);
 }
 
-.services-cta__channels {
+.services-header .page-header__subtitle {
+  margin-bottom: var(--space-3);
+}
+
+.services-cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
 }
 
 .services-cta__link {
@@ -1501,19 +1447,145 @@ noscript + .fade-in,
   color: var(--accent);
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: var(--space-1) var(--space-3);
+  gap: 6px;
+  padding: 10px 20px;
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
-  transition: background-color var(--duration-hover) ease, color var(--duration-hover) ease, gap var(--duration-hover) ease;
+  transition: background-color var(--duration-hover) ease, color var(--duration-hover) ease, border-color var(--duration-hover) ease, transform var(--duration-hover) ease, gap var(--duration-hover) ease;
   text-decoration: none;
+  background-color: transparent;
 }
 
 .services-cta__link:hover {
+  background-color: var(--accent-wash);
+  color: var(--accent-ink);
+  gap: 10px;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.services-cta__link--primary {
   background-color: var(--accent);
   color: var(--paper);
-  text-decoration: none;
-  gap: 8px;
+  border-color: var(--accent);
+}
+
+.services-cta__link--primary:hover {
+  background-color: var(--accent-ink);
+  color: var(--paper);
+  border-color: var(--accent-ink);
+}
+
+/* Positioning & Availability Note */
+.services-note {
+  border-left: 3px solid var(--accent);
+  padding: var(--space-3) var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: clamp(3rem, 7vh, 4.5rem);
+  background-color: var(--paper-raised);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  max-width: 68ch;
+}
+
+.services-note p {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.68;
+  font-weight: 400;
+}
+
+/* Sections */
+.services-section {
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.services-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Three Places Founders Get Stuck Cards */
+.stuck-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stuck-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  background-color: var(--paper-raised);
+  transition: transform var(--duration-card) ease, border-color var(--duration-card) ease, box-shadow var(--duration-card) ease;
+}
+
+.stuck-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-muted);
+  box-shadow: 0 4px 20px rgba(26, 24, 21, 0.04);
+}
+
+.stuck-card__quote {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+  line-height: 1.3;
+}
+
+.stuck-card__body {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: var(--space-3);
+  max-width: 68ch;
+}
+
+.stuck-card__tags {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--line);
+}
+
+/* Why Me Section */
+.why-me-content {
+  max-width: 68ch;
+}
+
+.why-me-content p {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+/* Closing Section */
+.services-closing {
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-5);
+  margin-top: clamp(3rem, 7vh, 5rem);
+  margin-bottom: var(--space-4);
+  max-width: 68ch;
+}
+
+.services-closing__tagline {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
 }
 
 /* ==========================================================================

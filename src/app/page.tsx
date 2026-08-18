@@ -58,9 +58,9 @@ export default function Home() {
 
           <p className="hero__body">
             If you&apos;re running a company alone or with a small team, most of your day
-            gets eaten by everything that isn&apos;t the actual work. I help with product
-            and go-to-market — spotting where a flow or feature is broken, catching what&apos;s
-            missing before a user has to point it out, building it out, one thing at a time.
+            gets eaten by everything that isn&apos;t the actual work. I help founders with product design
+            and features enhancements - spotting where a flow or feature is broken, catching what&apos;s
+            missing before a user has to point it out, Figuring it out, one thing at a time.
             I care about deep focus, speed of execution, and solving problems that are actually worth solving.
           </p>
 

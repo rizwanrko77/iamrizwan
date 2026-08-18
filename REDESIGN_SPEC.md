@@ -245,7 +245,7 @@ Content edits (light touch only):
 Do all of this — "premium" includes being found and being quotable by AI answer engines.
 
 ### 4.1 Core metadata
-- [ ] Keep `metadataBase`, per-page `title`/`description`. Rewrite descriptions to be human and specific (see per-page notes). Titles: pattern `"{Page} — Mohd Rizwan"`; home stays `"Mohd Rizwan — Product Builder & GTM"` or similar.
+- [ ] Keep `metadataBase`, per-page `title`/`description`. Rewrite descriptions to be human and specific (see per-page notes). Titles: pattern `"{Page} — Mohd Rizwan"`; home stays `"Rizwan — Product Builder"` or similar.
 - [ ] Add a real **OG image** (see §6.4). Currently `twitter.card` is `summary_large_image` but no image is set → set `openGraph.images` and `twitter.images` to a designed 1200×630 card. Static file in `/public`.
 - [ ] Verify canonical URLs are correct for static export (`metadataBase` + trailing-slash behavior). Set `trailingSlash` consistently in `next.config.ts` and make sure `sitemap.ts` URLs match.
 
