@@ -80,7 +80,7 @@ export default function Company() {
                 <span className="status-chip__dot"></span> Closed
               </span>
             </div>
-            <p className="card__body">A super app for jobs and earnings: job portal, ATS, HRM, and freelance marketplace. Scaled to 32 people, signed 10+ contracts with leading banks and NBFCs. Shut down in 2025.</p>
+            <p className="card__body">A super app for jobs and earnings: job portal, ATS, HRM, and freelance marketplace. Scaled to 32 people, signed 20+ contracts with leading banks and NBFCs. Shut down in 2025.</p>
             <div className="card__footer">
               <span className="card__tags">jobs · recruitment · HRM</span>
             </div>
