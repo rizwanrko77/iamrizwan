@@ -117,7 +117,7 @@ export default function Footer() {
 
         {/* Bottom row: copyright + feedback */}
         <div className="footer__bottom">
-          <span>© {new Date().getFullYear()} Mohd Rizwan</span>
+          <span>© {new Date().getFullYear()} Rizwan</span>
           <div className="footer-feedback" ref={feedbackRef}>
             <button
               className="footer-feedback__trigger"

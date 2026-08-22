@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bio - Mohd Rizwan",
+  title: "Rizwan - Bio",
   description:
     "I've built companies alone, placed 2,500+ people, scaled a startup to 32 and shut it down myself. Now building Tharom AI, solo. This is the whole story.",
   alternates: {
@@ -14,15 +14,15 @@ export const metadata: Metadata = {
     type: "profile",
     locale: "en_US",
     url: "https://iamrizwan.com/bio",
-    siteName: "Mohd Rizwan",
-    title: "Bio - Mohd Rizwan",
+    siteName: "Rizwan",
+    title: "Rizwan - Bio",
     description:
       "I've built companies alone, placed 2,500+ people, scaled a startup to 32 and shut it down myself. Now building Tharom AI, solo. This is the whole story.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Mohd Rizwan - Bio" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Rizwan - Bio" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bio - Mohd Rizwan",
+    title: "Rizwan - Bio",
     description:
       "I've built companies alone, placed 2,500+ people, scaled a startup to 32 and shut it down myself. Now building Tharom AI, solo. This is the whole story.",
     images: ["/og-image.png"],
