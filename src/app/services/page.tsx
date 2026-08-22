@@ -54,18 +54,18 @@ export default function Services() {
       {/* TARGETING — the part that makes a stranger think "that's me" */}
       <FadeIn>
         <section className="services-section">
-          <h2 className="services-section__title">You&apos;re one of these two</h2>
+          <h2 className="services-section__title">Are you one of these two?</h2>
           <div className="targeting-grid">
             <div className="targeting-card">
-              <h3 className="targeting-card__heading">Not launched yet.</h3>
+              <h3 className="targeting-card__heading">Pre-Product.</h3>
               <p className="targeting-card__body">
-                You&apos;re building things nobody asked for and you know it. You need someone to tell you which 20% has to exist for v1, or whether to build it at all. Sometimes the answer is &ldquo;don&apos;t.&rdquo;
+                Are you planning an MVP and worried you&apos;re over-engineering features nobody asked for? Do you need an honest outside perspective to pinpoint the core features that truly matter, design a frictionless first-time user experience, and make sure your v1 delivers value without the bloat?
               </p>
             </div>
             <div className="targeting-card">
-              <h3 className="targeting-card__heading">Launched, and it&apos;s quiet.</h3>
+              <h3 className="targeting-card__heading">Live Product.</h3>
               <p className="targeting-card__body">
-                People sign up, poke around, don&apos;t come back. You&apos;re shipping features because it feels like progress. The problem is in the first ten minutes of your product, and you can&apos;t see it anymore.
+                Whether you&apos;re on v1 or v10 of your product, do you feel users are struggling to get full value from it? Do you need to fix features that create friction, identify the missing pieces your users actually need, and unblock broken flows to elevate the entire experience and unlock higher retention?
               </p>
             </div>
           </div>
