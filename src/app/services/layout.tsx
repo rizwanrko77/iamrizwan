@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Services - Mohd Rizwan",
-  description: "How I spend my time with founders - idea validation, MVP development, UX reviews, and startup operations. No rate card, just real help.",
+  description: "I find what's broken in your product before your users bother to tell you. Product review, MVP scoping, and advisory for founders.",
 };
 
 export default function ServicesLayout({

@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: './',
   },
-  title: "Rizwan — Product Builder",
-  description: "I like being near people building something real. Product, building, validation, and go-to-market — one thing at a time.",
+  title: "Rizwan - Product Builder",
+  description: "I like being near people building something real. Product, building, validation, and go-to-market, one thing at a time.",
   keywords: ["Mohd Rizwan", "Product Builder", "GTM", "Startups", "Founder", "Tharom AI"],
   authors: [{ name: "Mohd Rizwan", url: siteUrl }],
   creator: "Mohd Rizwan",
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Mohd Rizwan",
-    title: "Rizwan — Product Builder",
+    title: "Rizwan - Product Builder",
     description: "I like being near people building something real.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Rizwan — Product Builder" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Rizwan - Product Builder" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rizwan — Product Builder",
+    title: "Rizwan - Product Builder",
     description: "I like being near people building something real.",
     images: ["/og-image.png"],
   },
@@ -80,8 +80,7 @@ export default function RootLayout({
       "url": "https://tharom.com"
     },
     "sameAs": [
-      "https://linkedin.com/in/rizwan-rko",
-      "https://github.com/rizwanrko77"
+      "https://linkedin.com/in/rizwan-rko"
     ],
     "knowsAbout": [
       "Artificial Intelligence",

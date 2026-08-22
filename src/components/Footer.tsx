@@ -5,8 +5,9 @@ import { useState, useRef, useEffect } from 'react';
 import FadeIn from './FadeIn';
 import TrackedLink from './TrackedLink';
 
-const brandsList = [
+const productsList = [
   { name: 'Tharom AI', href: 'https://tharom.com' },
+  { name: 'TIME', href: 'https://time.rkospl.com' },
   { name: 'Xapproach', href: 'https://xapproach.com' },
 ];
 
@@ -41,7 +42,6 @@ export default function Footer() {
               <TrackedLink href="https://linkedin.com/in/rizwan-rko" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'LinkedIn' }}>LinkedIn</TrackedLink>
               <TrackedLink href="mailto:hello@iamrizwan.com?subject=Reaching%20out%20via%20iamrizwan.com&body=Hi%20Rizwan%2C%0A%0A" eventName="footer_clicked" eventParams={{ link: 'Email' }}>Send an email</TrackedLink>
               <TrackedLink href="https://cal.com/meet-rizwan" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'Cal.com' }}>Book a meeting</TrackedLink>
-              <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" eventName="footer_clicked" eventParams={{ link: 'GitHub' }}>GitHub</TrackedLink>
             </div>
           </div>
 
@@ -67,7 +67,7 @@ export default function Footer() {
                   aria-expanded={isDropdownOpen}
                   aria-haspopup="true"
                 >
-                  View brands
+                  View products
                   <svg
                     className={`footer-dropdown__arrow ${isDropdownOpen ? 'footer-dropdown__arrow--open' : ''}`}
                     width="10"
@@ -86,18 +86,18 @@ export default function Footer() {
                 {isDropdownOpen && (
                   <div className="footer-dropdown__menu" role="menu">
                     <span className="footer-dropdown__title">RKO Services Private</span>
-                    {brandsList.map((brand) => (
+                    {productsList.map((product) => (
                       <TrackedLink
-                        key={brand.name}
-                        href={brand.href}
+                        key={product.name}
+                        href={product.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer-dropdown__item"
                         role="menuitem"
                         eventName="footer_project_clicked"
-                        eventParams={{ project: brand.name }}
+                        eventParams={{ project: product.name }}
                       >
-                        <span className="footer-dropdown__item-name">{brand.name}</span>
+                        <span className="footer-dropdown__item-name">{product.name}</span>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '6px', opacity: 0.5 }}>
                           <path d="M4.5 1.5H10.5V7.5" />
                           <path d="M10.5 1.5L1.5 10.5" />

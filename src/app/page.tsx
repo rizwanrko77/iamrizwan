@@ -57,11 +57,7 @@ export default function Home() {
           <div className="hero__rule" />
 
           <p className="hero__body">
-            If you&apos;re running a company alone or with a small team, most of your day
-            gets eaten by everything that isn&apos;t the actual work. I help founders with product design
-            and features enhancements - spotting where a flow or feature is broken, catching what&apos;s
-            missing before a user has to point it out, Figuring it out, one thing at a time.
-            I care about deep focus, speed of execution, and solving problems that are actually worth solving.
+            If you&apos;re building alone or with a small team, it&apos;s easy to get blind to your own product. I help founders enhance their product and user experience: spotting where flows break, catching friction before users churn, and pruning the noise. I care about deep focus, speed of execution, and solving problems that are actually worth solving.
           </p>
 
           <div className="hero__links">

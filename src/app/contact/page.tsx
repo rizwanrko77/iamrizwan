@@ -91,7 +91,7 @@ export default function Contact() {
       {/* Page Header */}
       <FadeIn>
         <header className="page-header">
-          <p className="page-header__kicker">— Contact</p>
+          <p className="page-header__kicker">- Contact</p>
           <h1 className="page-header__title">Let&apos;s talk.</h1>
           <p className="page-header__subtitle">The best way in is a message.</p>
         </header>
@@ -101,7 +101,7 @@ export default function Contact() {
       <FadeIn>
         <section className="contact-content">
           <p>
-            If you&apos;re working on something ambitious and think we could collaborate or share insights — my inbox is open.
+            If you&apos;re working on something ambitious and think we could collaborate or share insights, my inbox is open.
           </p>
 
           {/* Channels — quiet list with mono labels */}
@@ -124,12 +124,6 @@ export default function Contact() {
                 Book a meeting →
               </TrackedLink>
             </div>
-            <div className="contact-channel">
-              <span className="contact-channel__label">GitHub</span>
-              <TrackedLink href="https://github.com/rizwanrko77" target="_blank" rel="noopener noreferrer" className="contact-channel__link" eventName="contact_clicked" eventParams={{ method: 'GitHub' }}>
-                github.com/rizwanrko77
-              </TrackedLink>
-            </div>
           </div>
         </section>
       </FadeIn>
@@ -145,7 +139,7 @@ export default function Contact() {
           {formStatus === 'success' ? (
             <div className="contact-form-success">
               <p>
-                <strong>Message sent.</strong> Thank you — I&apos;ll get back to you soon.
+                <strong>Message sent.</strong> Thank you, I&apos;ll get back to you soon.
               </p>
               <p style={{ fontSize: '0.9rem', color: 'var(--ink-soft)', marginTop: '-8px', marginBottom: 'var(--space-3)' }}>
                 I just sent an automated confirmation to your email. If you don&apos;t see it, <strong>please check your spam folder</strong> and mark it as "Not spam" to ensure my reply reaches your inbox.
