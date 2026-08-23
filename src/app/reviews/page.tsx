@@ -180,7 +180,22 @@ export default function ReviewsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    async function fetchReviews() {
+    // 1. Immediately read cached reviews from localStorage for instant 0ms render
+    try {
+      const cached = localStorage.getItem('iamrizwan_cached_reviews');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setReviews(parsed);
+          setIsLoading(false);
+        }
+      }
+    } catch {
+      // Ignore localStorage read errors
+    }
+
+    // 2. Silently fetch latest data from Google Apps Script in background
+    async function fetchLiveReviews() {
       const endpoint =
         process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL ||
         process.env.NEXT_PUBLIC_CONTACT_FORM_URL;
@@ -195,17 +210,30 @@ export default function ReviewsPage() {
         if (res.ok) {
           const data = await res.json();
           if (data && data.reviews && Array.isArray(data.reviews)) {
-            setReviews(data.reviews);
+            // Only update if data actually changed (prevents unnecessary re-renders)
+            setReviews((prev) => {
+              const prevStr = JSON.stringify(prev);
+              const nextStr = JSON.stringify(data.reviews);
+              if (prevStr !== nextStr) {
+                try {
+                  localStorage.setItem('iamrizwan_cached_reviews', nextStr);
+                } catch {
+                  // Ignore storage errors
+                }
+                return data.reviews;
+              }
+              return prev;
+            });
           }
         }
       } catch (err) {
-        console.error('Error fetching reviews:', err);
+        console.error('Error fetching live reviews:', err);
       } finally {
         setIsLoading(false);
       }
     }
 
-    fetchReviews();
+    fetchLiveReviews();
   }, []);
 
   return (
