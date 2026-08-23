@@ -2193,6 +2193,45 @@ noscript + .fade-in,
   color: var(--ink);
 }
 
+.review-card__author--link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  transition: color var(--duration-hover) ease;
+  width: fit-content;
+}
+
+.review-card__author--link:hover {
+  color: var(--accent);
+}
+
+.review-card__author--link:hover span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.review-card__platform-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  opacity: 0.75;
+  flex-shrink: 0;
+  transition: transform var(--duration-hover) ease, color var(--duration-hover) ease, opacity var(--duration-hover) ease;
+}
+
+.review-card__platform-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.review-card__author--link:hover .review-card__platform-icon-wrap {
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
 .review-card__role {
   font-family: var(--font-mono);
   font-size: 0.78rem;

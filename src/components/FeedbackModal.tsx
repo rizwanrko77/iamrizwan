@@ -102,19 +102,19 @@ export default function FeedbackModal({
       const payload =
         activeTab === 'feedback'
           ? {
-              type: 'Feedback',
-              subject: feedbackSubject.trim(),
-              message: feedbackMessage.trim(),
-              contact: feedbackContact.trim() || 'Anonymous',
-            }
+            type: 'Feedback',
+            subject: feedbackSubject.trim(),
+            message: feedbackMessage.trim(),
+            contact: feedbackContact.trim() || 'Anonymous',
+          }
           : {
-              type: 'Testimonial',
-              name: reviewName.trim(),
-              company: reviewCompany.trim(),
-              message: reviewMessage.trim(),
-              contact: reviewContact.trim() || 'Not provided',
-              allowFeature: allowFeature,
-            };
+            type: 'Testimonial',
+            name: reviewName.trim(),
+            company: reviewCompany.trim(),
+            message: reviewMessage.trim(),
+            contact: reviewContact.trim() || 'Not provided',
+            allowFeature: allowFeature,
+          };
 
       await fetch(endpoint, {
         method: 'POST',
@@ -193,9 +193,8 @@ export default function FeedbackModal({
                 type="button"
                 role="tab"
                 aria-selected={activeTab === 'feedback'}
-                className={`feedback-modal__tab ${
-                  activeTab === 'feedback' ? 'feedback-modal__tab--active' : ''
-                }`}
+                className={`feedback-modal__tab ${activeTab === 'feedback' ? 'feedback-modal__tab--active' : ''
+                  }`}
                 onClick={() => {
                   setActiveTab('feedback');
                   setStatus('idle');
@@ -208,9 +207,8 @@ export default function FeedbackModal({
                 type="button"
                 role="tab"
                 aria-selected={activeTab === 'review'}
-                className={`feedback-modal__tab ${
-                  activeTab === 'review' ? 'feedback-modal__tab--active' : ''
-                }`}
+                className={`feedback-modal__tab ${activeTab === 'review' ? 'feedback-modal__tab--active' : ''
+                  }`}
                 onClick={() => {
                   setActiveTab('review');
                   setStatus('idle');
@@ -366,18 +364,21 @@ export default function FeedbackModal({
                       htmlFor="review-contact"
                       className="feedback-modal__label"
                     >
-                      Your Email / LinkedIn{' '}
-                      <span className="optional">(optional, for verification)</span>
+                      LinkedIn / Website / Profile{' '}
+                      <span className="optional">(optional)</span>
                     </label>
                     <input
                       id="review-contact"
                       type="text"
                       className="feedback-modal__input"
-                      placeholder="Private, never published publicly"
+                      placeholder="e.g. https://linkedin.com/in/username or yoursite.com"
                       value={reviewContact}
                       onChange={(e) => setReviewContact(e.target.value)}
                       disabled={status === 'sending'}
                     />
+                    <p style={{ fontSize: '0.8rem', color: 'var(--ink-muted)', marginTop: '4px' }}>
+                      If provided and your review is published, your name will link directly to your profile so others can connect with you.
+                    </p>
                   </div>
 
                   <div className="feedback-modal__checkbox-field">
