@@ -245,7 +245,7 @@ export default function ReviewsPage() {
             <div>
               <h1 className="page-header__title">What people say.</h1>
               <p className="page-header__subtitle">
-                Unfiltered reviews and testimonials from founders, collaborators, and builders I&apos;ve worked with.
+                Reviews and testimonials from founders, collaborators, and builders I&apos;ve worked with.
               </p>
             </div>
             <button
