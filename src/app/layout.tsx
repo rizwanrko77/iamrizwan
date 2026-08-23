@@ -33,7 +33,21 @@ export const metadata: Metadata = {
   },
   title: "Rizwan - Product & UX Enhancement",
   description: "I like being near people building something real. Product, building, validation, and go-to-market, one thing at a time.",
-  keywords: ["Rizwan", "Product Builder", "GTM", "Startups", "Founder", "Tharom AI", "TIME"],
+  keywords: [
+    "Mohd Rizwan",
+    "Rizwan",
+    "Product Builder",
+    "Product Experience",
+    "UX Enhancement",
+    "UX Audit",
+    "MVP Scoping",
+    "GTM",
+    "Startups",
+    "Founder",
+    "Tharom AI",
+    "TIME",
+    "RKO Services Private Limited"
+  ],
   authors: [{ name: "Rizwan", url: siteUrl }],
   creator: "Rizwan",
   openGraph: {
@@ -64,11 +78,12 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Rizwan",
+    "name": "Mohd Rizwan",
+    "alternateName": "Rizwan",
     "url": siteUrl,
     "image": `${siteUrl}/images/Rizwan-image.png`,
     "jobTitle": "Product Builder & Founder",
-    "description": "Founder of RKO Services Private Limited, building Tharom AI. Product thinking, AI infrastructure, and go-to-market.",
+    "description": "Founder of RKO Services Private Limited, building Tharom AI. Product thinking, UX enhancement, AI infrastructure, and go-to-market.",
     "worksFor": {
       "@type": "Organization",
       "name": "RKO Services Private Limited",
@@ -83,10 +98,14 @@ export default function RootLayout({
       "https://linkedin.com/in/rizwan-rko"
     ],
     "knowsAbout": [
+      "Product Experience (PX)",
+      "User Experience (UX)",
+      "Product Strategy",
+      "UX Audits & Optimization",
+      "MVP Scoping",
       "Artificial Intelligence",
       "AI Infrastructure",
       "Knowledge Systems",
-      "Product Strategy",
       "Go-to-Market",
       "Startups"
     ]

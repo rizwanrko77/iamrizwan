@@ -125,7 +125,7 @@ export default function Services() {
           <h2 className="services-section__title">Why me</h2>
           <div className="services-prose">
             <p>
-              I&apos;ve built, scaled, and shut down products. Made most of the expensive mistakes already.
+              I&apos;ve lived on both sides of launch: building from scratch and making the hard mistakes so you don&apos;t have to. Judge for yourself through what I&apos;ve built, my story, and words from founders.
             </p>
             <div className="proof-links">
               <TrackedLink
@@ -143,6 +143,14 @@ export default function Services() {
                 eventParams={{ target: "bio" }}
               >
                 My story <span>→</span>
+              </TrackedLink>
+              <TrackedLink
+                href="/reviews"
+                className="proof-link"
+                eventName="services_proof_clicked"
+                eventParams={{ target: "reviews" }}
+              >
+                What founders say <span>→</span>
               </TrackedLink>
             </div>
           </div>

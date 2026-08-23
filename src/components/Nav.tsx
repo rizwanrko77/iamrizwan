@@ -67,6 +67,7 @@ export default function Nav() {
           <Link href="/bio" className={`nav__link ${isActive('/bio') ? 'nav__link--active' : ''}`}>Bio</Link>
           <Link href="/services" className={`nav__link ${isActive('/services') ? 'nav__link--active' : ''}`}>Services</Link>
           <Link href="/company" className={`nav__link ${isActive('/company') ? 'nav__link--active' : ''}`}>Company</Link>
+          <Link href="/reviews" className={`nav__link ${isActive('/reviews') ? 'nav__link--active' : ''}`}>Reviews</Link>
           <Link href="/contact" className={`nav__link ${isActive('/contact') ? 'nav__link--active' : ''}`}>Contact</Link>
         </div>
         <button
@@ -112,6 +113,7 @@ export default function Nav() {
         <Link href="/bio" className={`nav__mobile-link ${isActive('/bio') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Bio</Link>
         <Link href="/services" className={`nav__mobile-link ${isActive('/services') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Services</Link>
         <Link href="/company" className={`nav__mobile-link ${isActive('/company') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Company</Link>
+        <Link href="/reviews" className={`nav__mobile-link ${isActive('/reviews') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Reviews</Link>
         <Link href="/contact" className={`nav__mobile-link ${isActive('/contact') ? 'nav__mobile-link--active' : ''}`} onClick={closeMenu}>Contact</Link>
       </div>
     </>

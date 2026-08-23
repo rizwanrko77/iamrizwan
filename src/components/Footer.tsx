@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import FadeIn from './FadeIn';
 import TrackedLink from './TrackedLink';
+import FeedbackModal from './FeedbackModal';
 
 const productsList = [
   { name: 'Tharom AI', href: 'https://tharom.com' },
@@ -13,18 +14,14 @@ const productsList = [
 
 export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const feedbackRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
-      }
-      if (feedbackRef.current && !feedbackRef.current.contains(event.target as Node)) {
-        setIsFeedbackOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -53,6 +50,7 @@ export default function Footer() {
               <Link href="/bio">Bio</Link>
               <Link href="/services">Services</Link>
               <Link href="/company">Company</Link>
+              <Link href="/reviews">Reviews</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </div>
@@ -119,39 +117,21 @@ export default function Footer() {
         {/* Bottom row: copyright + feedback */}
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} Rizwan</span>
-          <div className="footer-feedback" ref={feedbackRef}>
+          <div className="footer-feedback">
             <button
               className="footer-feedback__trigger"
-              onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
-              aria-expanded={isFeedbackOpen}
-              aria-haspopup="true"
+              onClick={() => setIsFeedbackModalOpen(true)}
             >
               Got feedback for me?
             </button>
-            {isFeedbackOpen && (
-              <div className="footer-dropdown__menu footer-feedback__menu" role="menu">
-                <TrackedLink
-                  href="mailto:hello@iamrizwan.com?subject=Feedback%20for%20Rizwan%20via%20iamrizwan.com&body=Hi%20Rizwan%2C%0A%0AHere%E2%80%99s%20my%20feedback%3A%0A%0A"
-                  className="footer-dropdown__item"
-                  role="menuitem"
-                  eventName="footer_feedback_clicked"
-                  eventParams={{ method: 'Email' }}
-                  onClick={() => setIsFeedbackOpen(false)}
-                >
-                  <span className="footer-dropdown__item-name">Send an email</span>
-                </TrackedLink>
-                <Link
-                  href="/contact"
-                  className="footer-dropdown__item"
-                  role="menuitem"
-                  onClick={() => setIsFeedbackOpen(false)}
-                >
-                  <span className="footer-dropdown__item-name">Fill the contact form</span>
-                </Link>
-              </div>
-            )}
           </div>
         </div>
+
+        {/* Feedback & Review Modal */}
+        <FeedbackModal
+          isOpen={isFeedbackModalOpen}
+          onClose={() => setIsFeedbackModalOpen(false)}
+        />
       </footer>
     </FadeIn>
   );
