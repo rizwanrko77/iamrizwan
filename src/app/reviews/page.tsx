@@ -1,8 +1,9 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import PageLayout from '@/components/PageLayout';
 import FadeIn from '@/components/FadeIn';
-import ReviewsModalButton from '@/components/ReviewsModalButton';
-
-export const revalidate = 60; // Next.js ISR: Edge cache revalidates in background every 60s
+import FeedbackModal from '@/components/FeedbackModal';
 
 interface Review {
   id: number;
@@ -173,34 +174,39 @@ function ReviewCardItem({ review }: { review: Review }) {
   );
 }
 
-async function getApprovedReviews(): Promise<Review[]> {
-  const endpoint =
-    process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL ||
-    process.env.NEXT_PUBLIC_CONTACT_FORM_URL;
+export default function ReviewsPage() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!endpoint) return [];
+  useEffect(() => {
+    async function fetchReviews() {
+      const endpoint =
+        process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL ||
+        process.env.NEXT_PUBLIC_CONTACT_FORM_URL;
 
-  try {
-    const res = await fetch(endpoint, {
-      method: 'GET',
-      next: { revalidate: 60 },
-    });
+      if (!endpoint) {
+        setIsLoading(false);
+        return;
+      }
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.reviews && Array.isArray(data.reviews)) {
-        return data.reviews;
+      try {
+        const res = await fetch(endpoint, { method: 'GET', cache: 'no-cache' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.reviews && Array.isArray(data.reviews)) {
+            setReviews(data.reviews);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+      } finally {
+        setIsLoading(false);
       }
     }
-  } catch (err) {
-    console.error('Error fetching approved reviews:', err);
-  }
 
-  return [];
-}
-
-export default async function ReviewsPage() {
-  const reviews = await getApprovedReviews();
+    fetchReviews();
+  }, []);
 
   return (
     <PageLayout>
@@ -214,13 +220,34 @@ export default async function ReviewsPage() {
                 Unfiltered reviews and testimonials from founders, collaborators, and builders I&apos;ve worked with.
               </p>
             </div>
-            <ReviewsModalButton />
+            <button
+              className="services-cta__link services-cta__link--primary reviews-header__btn"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Leave a review <span>→</span>
+            </button>
           </div>
         </FadeIn>
       </div>
 
       <div className="reviews-container">
-        {reviews.length > 0 ? (
+        {isLoading ? (
+          <div className="reviews-loading">
+            <div
+              className="feedback-modal__spinner"
+              style={{
+                width: '24px',
+                height: '24px',
+                borderWidth: '3px',
+                borderColor: 'var(--line)',
+                borderTopColor: 'var(--accent)',
+              }}
+            ></div>
+            <p style={{ color: 'var(--ink-muted)', fontSize: '0.92rem' }}>
+              Loading reviews...
+            </p>
+          </div>
+        ) : reviews.length > 0 ? (
           <FadeIn>
             {/* Desktop / Laptop Masonry (Left: 1,3,5 | Right: 2,4,6) */}
             <div className="reviews-masonry--desktop">
@@ -254,11 +281,24 @@ export default async function ReviewsPage() {
               <p className="reviews-empty__desc">
                 Have we worked together on a product, design, or project? I&apos;d love to hear your honest feedback.
               </p>
-              <ReviewsModalButton isFirstReview />
+              <button
+                className="services-cta__link services-cta__link--primary"
+                onClick={() => setIsModalOpen(true)}
+                style={{ marginTop: 'var(--space-2)' }}
+              >
+                Leave the first review <span>→</span>
+              </button>
             </div>
           </FadeIn>
         )}
       </div>
+
+      {/* Review Modal */}
+      <FeedbackModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialTab="review"
+      />
     </PageLayout>
   );
 }
