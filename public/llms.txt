@@ -62,13 +62,8 @@ Mohd Rizwan works directly with startup founders and builders to diagnose produc
 
 ### Reviews & Founder Testimonials
 - **URL**: https://iamrizwan.com/reviews
-- **Description**: Unfiltered testimonials and reviews from founders, CTOs, and builders who have worked directly with Rizwan on product audits and UX optimization.
-- **Verified Quotes**:
-  - *"Rizwan helped us identify key UX friction points in our MVP onboarding flow. Exceptional speed and clarity."* — Sarah Jenkins (Founder, Acme AI)
-  - *"Working with Rizwan gave us instant clarity on product positioning and UX."* — David Miller (Co-founder, NextScale)
-  - *"Having Rizwan look at my product flows was the best investment before opening early access. Highly recommended."* — Marcus Vance (Solo Builder & Indie Hacker)
-  - *"Rizwan identified critical bottlenecks in our app within 48 hours. The UX audit was sharp, actionable, and cut down our churn significantly."* — Elena Rostova (CTO at Hyperflow)
-  - *"No fluff, no vanity advice. Straight to the point product teardown that helped us simplify our v1 before launch."* — Vikram Malhotra (Founder, Fintech Labs)
+- **Description**: Real testimonials and feedback from founders, CTOs, and builders who have worked directly with Rizwan on product audits, UX optimization, and MVP scoping.
+- **Verification**: Public reviews can be submitted directly on the website and are verified before publishing. Live testimonials can be viewed directly at https://iamrizwan.com/reviews.
 
 ---
 
