@@ -1,8 +1,9 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import PageLayout from '@/components/PageLayout';
 import FadeIn from '@/components/FadeIn';
-import ReviewsHeaderActions from '@/components/ReviewsHeaderActions';
-
-export const revalidate = 60; // Next.js ISR: Cache static HTML on Edge and revalidate every 60s
+import FeedbackModal from '@/components/FeedbackModal';
 
 interface Review {
   id: number;
@@ -136,7 +137,7 @@ function getPlatformIcon(url: string) {
     <svg className="review-card__platform-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-label="Website">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="2" y1="12" x2="22" y2="12"></line>
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
     </svg>
   );
 }
@@ -173,34 +174,59 @@ function ReviewCardItem({ review }: { review: Review }) {
   );
 }
 
-async function getApprovedReviews(): Promise<Review[]> {
-  const endpoint =
-    process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL ||
-    process.env.NEXT_PUBLIC_CONTACT_FORM_URL;
+export default function ReviewsPage() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  if (!endpoint) return [];
+  useEffect(() => {
+    // 1. Check local cache first for 0ms instant display
+    try {
+      const cached = sessionStorage.getItem('iamrizwan_reviews_cache');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setReviews(parsed);
+          setIsLoading(false);
+        }
+      }
+    } catch {
+      // Ignore storage errors
+    }
 
-  try {
-    const res = await fetch(endpoint, {
-      method: 'GET',
-      next: { revalidate: 60 }, // Revalidate at most once every 60s in the background
-    });
+    // 2. Fetch fresh live data from Google Apps Script
+    async function fetchReviews() {
+      const endpoint =
+        process.env.NEXT_PUBLIC_FEEDBACK_FORM_URL ||
+        process.env.NEXT_PUBLIC_CONTACT_FORM_URL;
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data && data.reviews && Array.isArray(data.reviews)) {
-        return data.reviews;
+      if (!endpoint) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(endpoint, { method: 'GET', cache: 'no-cache' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.reviews && Array.isArray(data.reviews)) {
+            setReviews(data.reviews);
+            try {
+              sessionStorage.setItem('iamrizwan_reviews_cache', JSON.stringify(data.reviews));
+            } catch {
+              // Ignore storage errors
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching live reviews:', err);
+      } finally {
+        setIsLoading(false);
       }
     }
-  } catch (err) {
-    console.error('Error server-fetching approved reviews:', err);
-  }
 
-  return [];
-}
-
-export default async function ReviewsPage() {
-  const reviews = await getApprovedReviews();
+    fetchReviews();
+  }, []);
 
   return (
     <PageLayout>
@@ -214,13 +240,34 @@ export default async function ReviewsPage() {
                 Unfiltered reviews and testimonials from founders, collaborators, and builders I&apos;ve worked with.
               </p>
             </div>
-            <ReviewsHeaderActions />
+            <button
+              className="services-cta__link services-cta__link--primary reviews-header__btn"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Leave a review <span>→</span>
+            </button>
           </div>
         </FadeIn>
       </div>
 
       <div className="reviews-container">
-        {reviews.length > 0 ? (
+        {isLoading && reviews.length === 0 ? (
+          <div className="reviews-loading">
+            <div
+              className="feedback-modal__spinner"
+              style={{
+                width: '24px',
+                height: '24px',
+                borderWidth: '3px',
+                borderColor: 'var(--line)',
+                borderTopColor: 'var(--accent)',
+              }}
+            ></div>
+            <p style={{ color: 'var(--ink-muted)', fontSize: '0.92rem' }}>
+              Loading reviews...
+            </p>
+          </div>
+        ) : reviews.length > 0 ? (
           <FadeIn>
             {/* Desktop / Laptop Masonry (Left: 1,3,5 | Right: 2,4,6) */}
             <div className="reviews-masonry--desktop">
@@ -254,11 +301,24 @@ export default async function ReviewsPage() {
               <p className="reviews-empty__desc">
                 Have we worked together on a product, design, or project? I&apos;d love to hear your honest feedback.
               </p>
-              <ReviewsHeaderActions isFirstReview />
+              <button
+                className="services-cta__link services-cta__link--primary"
+                onClick={() => setIsModalOpen(true)}
+                style={{ marginTop: 'var(--space-2)' }}
+              >
+                Leave the first review <span>→</span>
+              </button>
             </div>
           </FadeIn>
         )}
       </div>
+
+      {/* Review Modal */}
+      <FeedbackModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialTab="review"
+      />
     </PageLayout>
   );
 }
