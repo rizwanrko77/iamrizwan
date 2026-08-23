@@ -461,20 +461,59 @@ h2 {
   line-height: 1.72;
   color: var(--ink-soft);
   max-width: 52ch;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.hero__cta-primary {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--paper);
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 10px 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background-color var(--duration-hover) ease, border-color var(--duration-hover) ease, transform var(--duration-hover) ease, gap var(--duration-hover) ease;
+  width: fit-content;
+}
+
+.hero__cta-primary:hover {
+  background-color: var(--accent-ink);
+  border-color: var(--accent-ink);
+  color: var(--paper);
+  transform: translateY(-1px);
+  gap: 10px;
+  text-decoration: none;
+}
+
+.hero__cta-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
 }
 
 .hero__links {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: 10px;
 }
 
 .hero__link {
   font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 400;
+  color: var(--ink-soft);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -490,7 +529,7 @@ h2 {
 
 .hero__link:hover {
   background-size: 100% 1px;
-  color: var(--accent);
+  color: var(--ink);
   gap: 10px;
   text-decoration: none;
 }

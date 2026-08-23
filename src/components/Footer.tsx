@@ -49,6 +49,7 @@ export default function Footer() {
           <div className="footer__group">
             <span className="footer__group-label">Navigate</span>
             <div className="footer__group-links">
+              <Link href="/">Home</Link>
               <Link href="/bio">Bio</Link>
               <Link href="/services">Services</Link>
               <Link href="/company">Company</Link>
