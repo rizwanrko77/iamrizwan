@@ -87,6 +87,35 @@ function ResourceCardItem({ resource }: { resource: Resource }) {
   );
 }
 
+function ResourceSkeletonPlaceholder() {
+  return (
+    <div className="resource-card resource-card--skeleton" aria-hidden="true">
+      <div className="resource-card__media-link">
+        <div className="resource-card__placeholder resource-skeleton__media">
+          <div className="resource-skeleton__shimmer-dot" />
+        </div>
+      </div>
+      <div className="resource-card__content resource-skeleton__content">
+        <div className="resource-card__meta-top">
+          <div className="resource-skeleton__bar resource-skeleton__bar--badge" />
+          <div className="resource-skeleton__bar resource-skeleton__bar--time" />
+        </div>
+
+        <div className="resource-skeleton__bar resource-skeleton__bar--title" />
+        <div className="resource-skeleton__bar resource-skeleton__bar--title-short" />
+
+        <div className="resource-skeleton__bar resource-skeleton__bar--desc" />
+        <div className="resource-skeleton__bar resource-skeleton__bar--desc-short" />
+
+        <div className="resource-card__footer" style={{ borderTopColor: 'rgba(224, 219, 208, 0.4)' }}>
+          <div className="resource-skeleton__bar resource-skeleton__bar--date" />
+          <div className="resource-skeleton__bar resource-skeleton__bar--cta" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ResourcesPage() {
   const allResources = useMemo(() => getAllResources(), []);
   const categories = useMemo(() => getAllCategories(), []);
@@ -118,10 +147,14 @@ export default function ResourcesPage() {
           <p className="page-header__kicker">- Curated Knowledge</p>
           <div className="resources-header__row">
             <div>
-              <h1 className="page-header__title">Resources &amp; Blueprints.</h1>
-              <p className="page-header__subtitle">
-                Actionable playbooks, checklists, tools, and guides curated for founders, builders, and product teams.
+              <h1 className="page-header__title">Resources &amp; Playbooks</h1>
+              <p className="page-header__desc">
+                Architectural blueprints, interactive tools, and pragmatic workflows for building products without unnecessary friction.
               </p>
+            </div>
+            <div className="resources-header__stats">
+              <span className="resources-header__count">{allResources.length}</span>
+              <span className="resources-header__count-label">Playbooks &amp; Tools</span>
             </div>
           </div>
         </FadeIn>
@@ -129,26 +162,28 @@ export default function ResourcesPage() {
 
       <FadeIn>
         <div className="resources-controls">
-          {/* Category Tabs */}
-          {categories.length > 1 && (
-            <div className="resources-categories" role="tablist" aria-label="Resource categories">
-              {categories.map((cat) => (
+          {/* Categories Tab Pills */}
+          <div className="resources-categories" role="tablist" aria-label="Filter resources by category">
+            {categories.map((cat) => {
+              const isActive = activeCategory.toLowerCase() === cat.toLowerCase();
+              return (
                 <button
                   key={cat}
+                  type="button"
                   role="tab"
-                  aria-selected={activeCategory === cat}
+                  aria-selected={isActive}
                   className={`resources-category-btn ${
-                    activeCategory === cat ? 'resources-category-btn--active' : ''
+                    isActive ? 'resources-category-btn--active' : ''
                   }`}
                   onClick={() => setActiveCategory(cat)}
                 >
                   {cat}
                 </button>
-              ))}
-            </div>
-          )}
+              );
+            })}
+          </div>
 
-          {/* Search Filter */}
+          {/* Search Box */}
           <div className="resources-search">
             <svg
               className="resources-search__icon"
@@ -194,6 +229,7 @@ export default function ResourcesPage() {
               {filteredResources.map((resource) => (
                 <ResourceCardItem key={resource.slug} resource={resource} />
               ))}
+              <ResourceSkeletonPlaceholder />
             </div>
           </FadeIn>
         ) : allResources.length === 0 ? (

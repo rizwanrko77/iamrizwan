@@ -302,6 +302,25 @@ function renderFormattedContent(content?: string) {
       continue;
     }
 
+    // Ordered List (1. 2. 3.)
+    if (/^\d+\.\s+/.test(trimmed)) {
+      const listItems: string[] = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        listItems.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
+        i++;
+      }
+      blocks.push(
+        <ol key={blocks.length} className="resource-body__ol">
+          {listItems.map((item, idx) => (
+            <li key={idx} className="resource-body__ol-item">
+              {parseInline(item)}
+            </li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
     // Standard Paragraph
     const paragraphLines: string[] = [];
     while (
@@ -314,6 +333,7 @@ function renderFormattedContent(content?: string) {
       !lines[i].trim().startsWith('### ') &&
       !lines[i].trim().startsWith('- ') &&
       !lines[i].trim().startsWith('* ') &&
+      !/^\d+\.\s+/.test(lines[i].trim()) &&
       lines[i].trim() !== '---'
     ) {
       paragraphLines.push(lines[i].trim());

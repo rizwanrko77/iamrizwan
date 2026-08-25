@@ -2,10 +2,10 @@ import { Resource } from './types';
 
 export const makeApplicationTechnicalRound: Resource = {
   slug: 'make-application-technical-round',
-  title: 'Make the application itself the technical round',
+  title: 'Find the best applicants for technical roles in post-AI era',
   description: 'A screening method for senior engineering hires, plus a working implementation you can deploy in about ten minutes.',
   category: 'Playbook',
-  date: '25 August 2026',
+  date: '14 May 2026',
   readTime: '8 min read',
   tags: ['Hiring', 'Engineering', 'Screening', 'Cloudflare Pages'],
   featured: true,
@@ -130,7 +130,7 @@ success until the failures are as informative as the successes.`,
     name: 'Mohd Rizwan',
     role: 'Founder & UX Enhancement Specialist',
   },
-  content: `*Last updated: 25 August 2026. Status: reference build tested end to end, not yet run on a live hiring round.*
+  content: `*Last updated: 14 May 2026. Status: reference build tested end to end, not yet run on a live hiring round.*
 
 ---
 

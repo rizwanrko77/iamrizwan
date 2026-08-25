@@ -83,6 +83,9 @@ export default function Home() {
               <Link href="/company" className="hero__link">
                 See what I&apos;ve built <span>→</span>
               </Link>
+              <Link href="/resources" className="hero__link">
+                Resources and playbooks <span>→</span>
+              </Link>
               <Link href="/contact" className="hero__link">
                 Start a conversation <span>→</span>
               </Link>

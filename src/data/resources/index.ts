@@ -1,10 +1,14 @@
 import { Resource } from './types';
 import { makeApplicationTechnicalRound } from './make-application-technical-round';
+import { ultimate0CostWebDevAntigravity } from './ultimate-0-cost-web-development-antigravity';
+import { knowExactlyHowManyHoursFree } from './know-exactly-how-many-hours-free';
 
 export * from './types';
 
 export const resourcesData: Resource[] = [
   makeApplicationTechnicalRound,
+  ultimate0CostWebDevAntigravity,
+  knowExactlyHowManyHoursFree,
 ];
 
 export function getAllResources(): Resource[] {

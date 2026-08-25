@@ -2,7 +2,17 @@
 
 import { useState } from 'react';
 
-export default function CopyPromptBox({ prompt }: { prompt: string }) {
+interface CopyPromptBoxProps {
+  prompt: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export default function CopyPromptBox({
+  prompt,
+  title = 'Build your own with this AI prompt',
+  subtitle = 'Copy and paste this prompt into Antigravity, Claude, ChatGPT, or Cursor to scaffold this setup.',
+}: CopyPromptBoxProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -42,10 +52,8 @@ export default function CopyPromptBox({ prompt }: { prompt: string }) {
             <line x1="12" y1="19" x2="20" y2="19" />
           </svg>
           <div>
-            <h3 className="prompt-box__title">Build your own with this AI prompt</h3>
-            <p className="prompt-box__subtitle">
-              Copy and paste this prompt into Claude, ChatGPT, or Cursor to scaffold a custom technical screening flow.
-            </p>
+            <h3 className="prompt-box__title">{title}</h3>
+            <p className="prompt-box__subtitle">{subtitle}</p>
           </div>
         </div>
 
