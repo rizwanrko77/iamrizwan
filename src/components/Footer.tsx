@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import FadeIn from './FadeIn';
 import TrackedLink from './TrackedLink';
@@ -16,6 +17,9 @@ export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const isActive = (path: string) => (path === '/' ? pathname === '/' : pathname.startsWith(path));
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -46,12 +50,13 @@ export default function Footer() {
           <div className="footer__group">
             <span className="footer__group-label">Navigate</span>
             <div className="footer__group-links">
-              <Link href="/">Home</Link>
-              <Link href="/bio">Bio</Link>
-              <Link href="/services">Services</Link>
-              <Link href="/company">Company</Link>
-              <Link href="/reviews">Reviews</Link>
-              <Link href="/contact">Contact</Link>
+              <Link href="/" className={`footer__link ${isActive('/') ? 'footer__link--active' : ''}`}>Home</Link>
+              <Link href="/bio" className={`footer__link ${isActive('/bio') ? 'footer__link--active' : ''}`}>Bio</Link>
+              <Link href="/services" className={`footer__link ${isActive('/services') ? 'footer__link--active' : ''}`}>Services</Link>
+              <Link href="/company" className={`footer__link ${isActive('/company') ? 'footer__link--active' : ''}`}>Company</Link>
+              <Link href="/resources" className={`footer__link ${isActive('/resources') ? 'footer__link--active' : ''}`}>Resources</Link>
+              <Link href="/reviews" className={`footer__link ${isActive('/reviews') ? 'footer__link--active' : ''}`}>Reviews</Link>
+              <Link href="/contact" className={`footer__link ${isActive('/contact') ? 'footer__link--active' : ''}`}>Contact</Link>
             </div>
           </div>
 
