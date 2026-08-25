@@ -4,6 +4,8 @@ import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import FadeIn from '@/components/FadeIn';
 import TrackedLink from '@/components/TrackedLink';
+import CopyPromptBox from '@/components/CopyPromptBox';
+import TableOfContents, { TocItem } from '@/components/TableOfContents';
 import { getAllResources, getResourceBySlug } from '@/data/resources';
 
 interface ResourcePageProps {
@@ -51,6 +53,38 @@ export async function generateMetadata({ params }: ResourcePageProps): Promise<M
       images: [ogImg],
     },
   };
+}
+
+function extractHeadings(content?: string, promptSnippet?: string): TocItem[] {
+  if (!content) return [];
+  const lines = content.split('\n');
+  const headings: TocItem[] = [];
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## ')) {
+      const rawTitle = trimmed
+        .replace('## ', '')
+        .replace(/\*\*/g, '')
+        .replace(/`/g, '')
+        .replace(/\*/g, '')
+        .trim();
+      const id = rawTitle
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+      headings.push({ id, title: rawTitle });
+    }
+  });
+
+  if (promptSnippet) {
+    headings.push({
+      id: 'ai-prompt',
+      title: 'Build with AI prompt',
+    });
+  }
+
+  return headings;
 }
 
 function parseInline(text: string): React.ReactNode {
@@ -128,7 +162,6 @@ function renderFormattedContent(content?: string) {
 
     // Code block
     if (trimmed.startsWith('```')) {
-      const lang = trimmed.replace('```', '').trim();
       const codeLines: string[] = [];
       i++;
       while (i < lines.length && !lines[i].trim().startsWith('```')) {
@@ -138,7 +171,6 @@ function renderFormattedContent(content?: string) {
       i++; // skip closing ```
       blocks.push(
         <div key={blocks.length} className="resource-body__code-wrap">
-          {lang && <div className="resource-body__code-lang">{lang}</div>}
           <pre className="resource-body__pre">
             <code>{codeLines.join('\n')}</code>
           </pre>
@@ -215,10 +247,21 @@ function renderFormattedContent(content?: string) {
       continue;
     }
 
-    // H2
+    // H2 with Heading ID for TOC Jump
     if (trimmed.startsWith('## ')) {
+      const rawHeading = trimmed
+        .replace('## ', '')
+        .replace(/\*\*/g, '')
+        .replace(/`/g, '')
+        .replace(/\*/g, '')
+        .trim();
+      const headingId = rawHeading
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+
       blocks.push(
-        <h2 key={blocks.length} className="resource-body__h2">
+        <h2 key={blocks.length} id={headingId} className="resource-body__h2">
           {parseInline(trimmed.replace('## ', ''))}
         </h2>
       );
@@ -299,6 +342,7 @@ export default async function ResourceDetailPage({ params }: ResourcePageProps) 
 
   const siteUrl = 'https://iamrizwan.com';
   const ogImg = resource.ogImage || resource.image || '/og-resources.png';
+  const headings = extractHeadings(resource.content, resource.promptSnippet);
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -330,157 +374,170 @@ export default async function ResourceDetailPage({ params }: ResourcePageProps) 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <PageLayout>
-        <div className="resource-detail">
-          {/* Breadcrumb Navigation */}
-          <FadeIn>
-            <nav className="resource-breadcrumbs" aria-label="Breadcrumbs">
-              <Link href="/" className="resource-breadcrumbs__link">
-                Home
-              </Link>
-              <span className="resource-breadcrumbs__sep">/</span>
-              <Link href="/resources" className="resource-breadcrumbs__link">
-                Resources
-              </Link>
-              <span className="resource-breadcrumbs__sep">/</span>
-              <span className="resource-breadcrumbs__current" aria-current="page">
-                {resource.title}
-              </span>
-            </nav>
-          </FadeIn>
+        <div className="resource-layout">
+          {/* Sticky Table of Contents Sidebar */}
+          {headings.length > 0 && <TableOfContents items={headings} />}
 
-          {/* Article Header */}
-          <FadeIn>
-            <header className="resource-detail__header">
-              <div className="resource-detail__meta-top">
-                <span className="resource-badge">{resource.category}</span>
-                {resource.readTime && (
-                  <span className="resource-card__read-time">{resource.readTime}</span>
-                )}
-                <span className="resource-detail__bullet">·</span>
-                <span className="resource-detail__date">{resource.date}</span>
-              </div>
+          {/* Main Article Content */}
+          <article className="resource-detail">
+            {/* Breadcrumb Navigation */}
+            <FadeIn>
+              <nav className="resource-breadcrumbs" aria-label="Breadcrumbs">
+                <Link href="/" className="resource-breadcrumbs__link">
+                  Home
+                </Link>
+                <span className="resource-breadcrumbs__sep">/</span>
+                <Link href="/resources" className="resource-breadcrumbs__link">
+                  Resources
+                </Link>
+                <span className="resource-breadcrumbs__sep">/</span>
+                <span className="resource-breadcrumbs__current" aria-current="page">
+                  {resource.title}
+                </span>
+              </nav>
+            </FadeIn>
 
-              <h1 className="resource-detail__title">{resource.title}</h1>
+            {/* Article Header */}
+            <FadeIn>
+              <header className="resource-detail__header">
+                <div className="resource-detail__meta-top">
+                  <span className="resource-badge">{resource.category}</span>
+                  {resource.readTime && (
+                    <span className="resource-card__read-time">{resource.readTime}</span>
+                  )}
+                  <span className="resource-detail__bullet">·</span>
+                  <span className="resource-detail__date">{resource.date}</span>
+                </div>
 
-              <p className="resource-detail__subtitle">{resource.description}</p>
+                <h1 className="resource-detail__title">{resource.title}</h1>
 
-              {/* Author Row */}
-              <div className="resource-detail__author-bar">
-                <img
-                  src="/images/Rizwan-image.png"
-                  alt="Mohd Rizwan"
-                  className="resource-detail__author-avatar"
-                  width={44}
-                  height={44}
-                  loading="lazy"
-                />
-                <div>
-                  <div className="resource-detail__author-name">
-                    {resource.author?.name || 'Mohd Rizwan'}
-                  </div>
-                  <div className="resource-detail__author-role">
-                    {resource.author?.role || 'Founder & UX Enhancement Specialist'}
+                <p className="resource-detail__subtitle">{resource.description}</p>
+
+                {/* Author Row */}
+                <div className="resource-detail__author-bar">
+                  <img
+                    src="/images/Rizwan-image.png"
+                    alt="Mohd Rizwan"
+                    className="resource-detail__author-avatar"
+                    width={44}
+                    height={44}
+                    loading="lazy"
+                  />
+                  <div>
+                    <div className="resource-detail__author-name">
+                      {resource.author?.name || 'Mohd Rizwan'}
+                    </div>
+                    <div className="resource-detail__author-role">
+                      {resource.author?.role || 'Founder & UX Enhancement Specialist'}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </header>
-          </FadeIn>
+              </header>
+            </FadeIn>
 
-          {/* Action Links (Demo + GitHub) */}
-          {(resource.externalUrl || resource.githubUrl) && (
+            {/* Action Links (Demo + GitHub) */}
+            {(resource.externalUrl || resource.githubUrl) && (
+              <FadeIn>
+                <div className="resource-actions-bar">
+                  {resource.externalUrl && (
+                    <TrackedLink
+                      href={resource.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="services-cta__link services-cta__link--primary"
+                      eventName="resource_demo_clicked"
+                      eventParams={{ resource: resource.title, url: resource.externalUrl }}
+                    >
+                      Open Live Demo <span>↗</span>
+                    </TrackedLink>
+                  )}
+                  {resource.githubUrl && (
+                    <TrackedLink
+                      href={resource.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="resource-secondary-action"
+                      eventName="resource_github_clicked"
+                      eventParams={{ resource: resource.title, url: resource.githubUrl }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                      </svg>
+                      View Source on GitHub <span>↗</span>
+                    </TrackedLink>
+                  )}
+                </div>
+              </FadeIn>
+            )}
+
+            {/* Cover Media if available */}
+            {resource.image && (
+              <FadeIn>
+                <div className="resource-detail__media">
+                  <img
+                    src={resource.image}
+                    alt={resource.title}
+                    className="resource-detail__cover-img"
+                  />
+                </div>
+              </FadeIn>
+            )}
+
+            {/* Main Content Body */}
             <FadeIn>
-              <div className="resource-actions-bar">
-                {resource.externalUrl && (
-                  <TrackedLink
-                    href={resource.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+              <div className="resource-detail__content-wrap">
+                {renderFormattedContent(resource.content)}
+              </div>
+            </FadeIn>
+
+            {/* Tags */}
+            {resource.tags && resource.tags.length > 0 && (
+              <FadeIn>
+                <div className="resource-detail__tags-section">
+                  <span className="resource-detail__tags-label">Topics:</span>
+                  <div className="resource-detail__tags-list">
+                    {resource.tags.map((tag) => (
+                      <span key={tag} className="resource-detail__tag-pill">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+            )}
+
+            {/* AI Prompt Box (if provided) */}
+            {resource.promptSnippet && (
+              <FadeIn>
+                <CopyPromptBox prompt={resource.promptSnippet} />
+              </FadeIn>
+            )}
+
+            {/* Founder Advisory Callout */}
+            <FadeIn>
+              <div className="resource-callout">
+                <div className="resource-callout__content">
+                  <h3 className="resource-callout__title">
+                    Want a custom screening system or UX audit?
+                  </h3>
+                  <p className="resource-callout__desc">
+                    I work with founders to design high-signal technical evaluations, streamline user onboarding, and eliminate product friction.
+                  </p>
+                </div>
+                <div className="resource-callout__actions">
+                  <Link
+                    href="/contact"
                     className="services-cta__link services-cta__link--primary"
-                    eventName="resource_demo_clicked"
-                    eventParams={{ resource: resource.title, url: resource.externalUrl }}
                   >
-                    Open Live Demo <span>↗</span>
-                  </TrackedLink>
-                )}
-                {resource.githubUrl && (
-                  <TrackedLink
-                    href={resource.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="resource-secondary-action"
-                    eventName="resource_github_clicked"
-                    eventParams={{ resource: resource.title, url: resource.githubUrl }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                    </svg>
-                    View Source on GitHub <span>↗</span>
-                  </TrackedLink>
-                )}
-              </div>
-            </FadeIn>
-          )}
-
-          {/* Cover Media if available */}
-          {resource.image && (
-            <FadeIn>
-              <div className="resource-detail__media">
-                <img
-                  src={resource.image}
-                  alt={resource.title}
-                  className="resource-detail__cover-img"
-                />
-              </div>
-            </FadeIn>
-          )}
-
-          {/* Main Content Body */}
-          <FadeIn>
-            <div className="resource-detail__content-wrap">
-              {renderFormattedContent(resource.content)}
-            </div>
-          </FadeIn>
-
-          {/* Tags */}
-          {resource.tags && resource.tags.length > 0 && (
-            <FadeIn>
-              <div className="resource-detail__tags-section">
-                <span className="resource-detail__tags-label">Topics:</span>
-                <div className="resource-card__tags">
-                  {resource.tags.map((tag) => (
-                    <span key={tag} className="resource-card__tag">
-                      #{tag}
-                    </span>
-                  ))}
+                    Contact Rizwan <span>→</span>
+                  </Link>
+                  <Link href="/resources" className="resource-callout__back-link">
+                    ← Back to all resources
+                  </Link>
                 </div>
               </div>
             </FadeIn>
-          )}
-
-          {/* Founder Advisory Callout */}
-          <FadeIn>
-            <div className="resource-callout">
-              <div className="resource-callout__content">
-                <h3 className="resource-callout__title">
-                  Want a custom screening system or UX audit?
-                </h3>
-                <p className="resource-callout__desc">
-                  I work with founders to design high-signal technical evaluations, streamline user onboarding, and eliminate product friction.
-                </p>
-              </div>
-              <div className="resource-callout__actions">
-                <Link
-                  href="/contact"
-                  className="services-cta__link services-cta__link--primary"
-                >
-                  Contact Rizwan <span>→</span>
-                </Link>
-                <Link href="/resources" className="resource-callout__back-link">
-                  ← Back to all resources
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
+          </article>
         </div>
       </PageLayout>
     </>

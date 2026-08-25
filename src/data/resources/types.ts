@@ -11,6 +11,7 @@ export interface Resource {
   githubUrl?: string;
   featured?: boolean;
   ogImage?: string;
+  promptSnippet?: string;
   author?: {
     name: string;
     role?: string;

@@ -7,10 +7,125 @@ export const makeApplicationTechnicalRound: Resource = {
   category: 'Playbook',
   date: '25 August 2026',
   readTime: '8 min read',
-  tags: ['Hiring', 'Engineering', 'Screening', 'Cloudflare Pages', 'AI Defense'],
+  tags: ['Hiring', 'Engineering', 'Screening', 'Cloudflare Pages'],
   featured: true,
   externalUrl: 'https://hollowpoint.pages.dev',
   githubUrl: 'https://github.com/rizwanrko77/hollowpoint',
+  promptSnippet: `You are helping me build a job application flow that doubles as the first
+technical screening round. Candidates work through a series of small technical
+obstacles in order to submit an application at all.
+
+## Fill these in
+
+- Company name: [COMPANY]
+- Role being hired: [ROLE]
+- What the company does, one line: [WHAT YOU DO]
+- Hosting target: [Cloudflare Pages / Vercel / Netlify / other]
+- Candidate time budget: [45 to 90 minutes]
+- Real candidates or a demo: [REAL / DEMO]
+
+If any of these are blank or ambiguous, ask me before writing any code.
+
+## What to build
+
+A job posting page, plus a multi-step application form, with a series of gates
+between the posting and a successful submission. Propose a gate count based on
+my time budget, roughly one gate per 12 to 15 minutes, and tell me your
+reasoning before you start building.
+
+Every gate must test something that predicts on-the-job behaviour. Reading
+carefully. Debugging from an error message. Reading response headers. Noticing
+a discrepancy nobody pointed at. Implementing a documented spec. If a gate
+tests only puzzle-solving or trivia, replace it.
+
+Design the gates yourself. Do not copy a known example. Vary the specific
+values, the mechanisms and the order, so that solutions published for someone
+else's version do not apply to mine.
+
+## Hard constraints
+
+These come from a working implementation. Follow them exactly.
+
+**1. Browsers repair most broken URLs before the request is sent.** Verified
+against Chromium:
+
+  Does not survive: backslashes (converted to forward slashes), /../ and /./
+  dot-segments (removed), tabs, newlines and stray spaces (stripped), typo'd
+  schemes like htlps:// (routed to search, and you also lose the server log).
+
+  Survives: a double slash in the path, path casing, anything in the query
+  string, and an href whose target differs from its visible anchor text.
+
+  Break the query string or the path shape. Never the scheme or the host. The
+  wrong URL still has to reach my server, or I cannot log the attempt.
+
+**2. Every failure must be diagnosable.** Each error response returns JSON with
+an error code, a plain-language detail, and a fix field naming the next action.
+No silent failures anywhere. Frustration with information is a test of
+persistence. Frustration without information is attrition, and it costs me the
+candidates I most want.
+
+**3. Broken controls must throw, not sit disabled.** A disabled button is
+obvious and teaches nothing. Wire the handler and let it fail on a missing
+value, with a console error that names what is missing and where to get it.
+
+**4. Every gate needs at least two valid solutions.** A gate with one intended
+answer tests whether the candidate thinks the way I do, which is not something
+I want to select for.
+
+**5. Stay stateless.** Sessions, tokens and any intermediate artifacts should be
+HMAC-signed blobs verified against a single secret held in an environment
+variable. No database, no provisioning, no build step.
+
+**6. Do not try to block AI.** Assume candidates use models and that this is
+fine. Put the difficulty where model access does not help, meaning anywhere the
+candidate must debug state that exists only in their own browser session. Do
+not add bot blocking or crawler rules. Aggressive bot challenges will break any
+gate that requires a non-browser HTTP request.
+
+**7. The site must look professionally built.** If it looks broken, candidates
+conclude I am incompetent rather than deliberate, and the strongest ones leave
+first. Real typography, real layout, coherent copy.
+
+**8. Include a working accessibility bypass.** A flow built on hovering links,
+reading headers and using developer tools is not equally available to everyone.
+Add a visible alternate route to the same form, wired to a real contact address
+I will supply. In several jurisdictions this is a legal requirement.
+
+**9. State the mechanic in the posting itself.** Say plainly that the
+application is the first technical round, give the time budget, and note that
+things which appear broken are deliberate. A mismatched link target is also the
+textbook phishing signature, and security-minded candidates will otherwise
+report the page to their employer's IT team.
+
+## If I said REAL rather than DEMO
+
+Add persistence before anything else. Write each submission to a datastore and
+send a notification to an inbox. A candidate who spends an hour clearing gates
+and watches the application vanish is the worst outcome this system can produce.
+
+Write the receipt copy for a real posting, meaning a genuine confirmation and a
+real next step, not a disclosure that the whole thing was a mock.
+
+## Deliverables
+
+1. The full source, ready to deploy, with the deploy commands for my hosting
+   target and any known gotchas called out. On Cloudflare Pages specifically:
+   the deploy must run from the project root rather than from inside the assets
+   directory, and dashboard drag-and-drop does not compile a functions folder
+   at all.
+2. A separate walkthrough file documenting every gate, every valid solution,
+   and which values I should rotate quarterly.
+3. A solve script that walks all gates end to end against a live URL.
+4. A short scoring guide: what to log per candidate, and which signals actually
+   distinguish a strong applicant from a persistent one.
+
+## Verify before telling me it works
+
+Run the solve script against a local instance and show me the output. Then test
+every failure path: missing credentials, wrong signature, skipped steps,
+expired tokens, forged values. Show me those responses too. Do not report
+success until the failures are as informative as the successes.`,
   author: {
     name: 'Mohd Rizwan',
     role: 'Founder & UX Enhancement Specialist',
@@ -50,8 +165,6 @@ Five gates, roughly an hour. Everyone who reaches the end has demonstrated on th
 I built a full reference implementation to find out whether the idea survives contact with a real runtime. It's live at [hollowpoint.pages.dev](https://hollowpoint.pages.dev).
 
 Hollowpoint isn't a company and there's no job behind it. Everything below is the teardown, so if you want to attempt it cold, do that first.
-
-> **💡 AI Bot Access Note:** Currently, AI bots and automated web agents can visit and crawl this reference demo. In a live hiring round, blocking known AI web scrapers/bots makes the mechanism significantly more powerful, as models cannot inspect or assist the candidate with live in-browser session state.
 
 ## Four rules that make it work
 
